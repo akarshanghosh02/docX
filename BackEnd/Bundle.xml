@@ -1,0 +1,334 @@
+<root>
+	<sourceEnvironment>https://c2mdev.corp.dom/ouaf/usermap?language=ENG</sourceEnvironment><sourceProductVersion>Customer Release PGE_C2M28_PKG1.000</sourceProductVersion><bundle><entities><sequence>1</sequence><processingSequence>10</processingSequence><mo>SCRIPT</mo><pk1>CMChSummry</pk1><pk2/><pk3/><pk4/><pk5/><bo>F1-ScriptPhysicalBO</bo><boData><script>CMChSummry</script><longDescription>Get Charge summary:Paybill</longDescription><schema><schemaName>CMChSummry</schemaName><schemaType>F1SC</schemaType><version>40</version><schemaDefinition><![CDATA[<schema>
+    <acctId required="true" fkRef="ACCT" dataType="string"/>
+    <startDt dataType="date"/>
+    <endDt dataType="date"/>
+    <type type="list">
+        <v dataType="string"/>
+    </type>
+    <count dataType="number"/>
+    <page dataType="number"/>
+    <pageSize dataType="number"/>
+    <o type="group">
+        <amtDue mdField="AMOUNT_DUE" default="0" dataType="money"/>
+        <payAdj default="0" dataType="number"/>
+        <balFwd default="0" dataType="number"/>
+        <dueDate dataType="date"/>
+        <billPayList type="list">
+            <billDate dataType="date"/>
+            <startDate dataType="date"/>
+            <endDate dataType="date"/>
+            <amtDue default="0" dataType="number"/>
+            <billId dataType="string"/>
+            <type dataType="string"/>
+            <kwh dataType="number"/>
+            <amtPaid default="0" dataType="number"/>
+        </billPayList>
+        <totalDetailsRecords dataType="number"/>
+    </o>
+</schema>]]></schemaDefinition><customizationOwner>CM</customizationOwner></schema><applicationServiceId>F1-DFLTAPS</applicationServiceId><scriptStep><canDisplay>false</canDisplay><scriptStepForFalse>0</scriptStepForFalse><nextScriptStep>0</nextScriptStep><script>CMChSummry</script><sortSequence>10</sortSequence><stepType>EDDT</stepType><scriptStepForTrue>0</scriptStepForTrue><version>15</version><editDataArea><![CDATA[if ("parm/count != $BLANK and (parm/page != $BLANK or parm/pageSize!=$BLANK or parm/endDt != $BLANK or parm/startDt !=$BLANK )")
+     terminate with error (11114, 11001 %1='count and pageSize or page or startDt or endDt cannot be in request');
+end-if;]]></editDataArea><customizationOwner>CM</customizationOwner><stepSequence>9</stepSequence><doesTextContainVariables>false</doesTextContainVariables><text>validation</text></scriptStep><scriptStep><canDisplay>false</canDisplay><scriptStepForFalse>0</scriptStepForFalse><nextScriptStep>0</nextScriptStep><script>CMChSummry</script><sortSequence>20</sortSequence><stepType>EDDT</stepType><scriptStepForTrue>0</scriptStepForTrue><version>71</version><editDataArea><![CDATA[move "parm/acctId" to $accountId;
+move "$accountId" to "C1-RAcctSumm/head/key1/value";
+invokeSS 'C1-RAcctSumm' using "C1-RAcctSumm";
+//Start Delete - CUP-1836
+//move "C1-RAcctSumm/mainData/amountDue" to "parm/o/amtDue";
+//End Delete - CUP-1836
+move "C1-RAcctSumm/mainData/dueDate" to "parm/o/dueDate";
+move "C1-RAcctSumm/mainData/billId" to $billId;
+//Start Change - CUP-1836
+move "parm/acctId" to "CM-EXCADJTYP/accounts";
+invokeBS 'CM-EXCADJTYP' using "CM-EXCADJTYP";
+move "fn:format-number(xs:decimal(C1-RAcctSumm/mainData/amountDue)-xs:decimal(CM-EXCADJTYP/results/excludedFtTotalAmount), '0.00')" to "parm/o/amtDue";
+//move "xs:decimal('433.4')" to "parm/o/amtDue";
+//End Change - CUP-1836
+invokeGroovy 'fetchAccountLevelFields';]]></editDataArea><customizationOwner>CM</customizationOwner><stepSequence>1</stepSequence><doesTextContainVariables>false</doesTextContainVariables><text>get amount due and due date</text></scriptStep><scriptStep><canDisplay>false</canDisplay><scriptStepForFalse>0</scriptStepForFalse><nextScriptStep>0</nextScriptStep><script>CMChSummry</script><sortSequence>30</sortSequence><stepType>GVYM</stepType><scriptStepForTrue>0</scriptStepForTrue><version>147</version><editDataArea><![CDATA[void fetchAccountLevelFields(){
+  //fetchAmtDue();
+  String acctId = evalString("parm/acctId");
+
+  fetchpayAdj(acctId);
+  fetchTotCurCharge();
+}
+
+
+
+
+void fetchpayAdj(String acctId)
+ {
+
+   //Start Change - CUP-1836 - include unbilled adjustment types that are in Feature Config CM_UNBILADJ
+   //def query = createPreparedStatement("SELECT COALESCE(SUM(CUR_AMT),0) as CUR_AMT FROM CI_SA SA,CI_FT FT WHERE SA.ACCT_ID = :acctId AND SA.SA_ID = FT.SA_ID AND FT.FREEZE_SW = 'Y' AND FT.SHOW_ON_BILL_SW = 'Y' AND FT.BILL_ID = ' ' AND FT.FT_TYPE_FLG IN ('BS', 'BX', 'AD', 'AX')","Get Payment Adjustment");
+
+   def query = createPreparedStatement("SELECT COALESCE(SUM(CUR_AMT),0) as CUR_AMT FROM CI_SA SA,CI_FT FT WHERE SA.ACCT_ID = :acctId AND SA.SA_ID = FT.SA_ID AND FT.FREEZE_SW = 'Y' AND FT.REDUNDANT_SW ='N' AND FT.BILL_ID = ' ' AND (FT.FT_TYPE_FLG IN ('BS','BX','PS', 'PX') OR (FT.FT_TYPE_FLG IN ('AD', 'AX') AND TRIM(FT.PARENT_ID) IN (SELECT WFM_OPT_VAL FROM CI_WFM_OPT WHERE WFM_NAME = 'CM_UNBILADJ')))","Get Payment Adjustment");
+   //End Change - CUP-1836
+
+   query.bindString "acctId", acctId, "ACCT_ID";
+
+   SQLResultRow results = query.firstRow();
+   if(results == null ){
+     move '0', "parm/o/payAdj";
+     logger.debug("No Record Found");
+     return;
+   }
+
+   move results.getBigDecimal('CUR_AMT'), "parm/o/payAdj";
+
+ }
+void fetchTotCurCharge(){
+  //def query = createPreparedStatement("SELECT COALESCE(SUM(CUR_AMT),0) as CUR_AMT FROM CI_FT WHERE BILL_ID = :billId AND FT_TYPE_FLG IN ('BS','BX') AND FREEZE_SW = 'Y' AND CORRECTION_SW = 'N'","Get total current charge");
+  def query = createPreparedStatement("SELECT COALESCE(SUM(CUR_AMT),0) as CUR_AMT FROM CI_BILL_SA WHERE BILL_ID = :billId","Get total current charge");
+
+  query.bindString "billId", evalString("C1-RAcctSumm/mainData/billId"), "BILL_ID";
+  SQLResultRow results = query.firstRow();
+  //def totchg=0;
+  def billEndingBalance=0;
+  if(results == null ){
+     logger.debug("No Record Found");
+     return;
+   }else{
+     //totchg=results.getBigDecimal('CUR_AMT') as double;
+     billEndingBalance=results.getBigDecimal('CUR_AMT') as BigDecimal;
+   }
+
+   def amountDue= evalString("parm/o/amtDue") as BigDecimal;
+
+   //def payAdj= evalString("parm/o/payAdj") as double;
+   def payAdj= evalString("parm/o/payAdj") as BigDecimal;
+
+   //def balFwd=amountDue-payAdj-totchg;
+   def balFwd=billEndingBalance+payAdj;
+
+   if(balFwd < 0){
+     balFwd = 0;
+   }
+
+
+  move balFwd, "parm/o/balFwd";
+}]]></editDataArea><customizationOwner>CM</customizationOwner><stepSequence>3</stepSequence><doesTextContainVariables>false</doesTextContainVariables><text>fetch account level fields</text></scriptStep><scriptStep><canDisplay>false</canDisplay><scriptStepForFalse>0</scriptStepForFalse><nextScriptStep>0</nextScriptStep><script>CMChSummry</script><sortSequence>40</sortSequence><stepType>EDDT</stepType><scriptStepForTrue>0</scriptStepForTrue><version>43</version><editDataArea><![CDATA[if ("string(parm/endDt)= $BLANK")
+     move "$PROCESS-DATE" to "parm/endDt";
+end-if;
+//if ("string(parm/pageSize)!=$BLANK and string(parm/startDt) = $BLANK")
+invokeGroovy 'getStartDateEndDate';
+//end-if;]]></editDataArea><customizationOwner>CM</customizationOwner><stepSequence>4</stepSequence><doesTextContainVariables>false</doesTextContainVariables><text>Getting startDate and endDate if pageSize is given</text></scriptStep><scriptStep><canDisplay>false</canDisplay><scriptStepForFalse>0</scriptStepForFalse><nextScriptStep>0</nextScriptStep><script>CMChSummry</script><sortSequence>50</sortSequence><stepType>GVYM</stepType><scriptStepForTrue>0</scriptStepForTrue><version>71</version><editDataArea><![CDATA[void getStartDateEndDate(){
+
+
+  //def count=evalString("parm/pageSize") as int;
+  def acctId=evalString("parm/acctId");
+
+
+  def query = createPreparedStatement("SELECT SETUP_DT FROM CI_ACCT WHERE ACCT_ID = :acctId","Get setUpDate");
+
+  query.bindString "acctId",acctId , "ACCT_ID";
+  //query.bindString "count", evalString("parm/pageSize"), "COUNT";
+
+  def results = query.firstRow();
+
+
+  if(results == null ){
+     logger.info("No Record Found");
+     return;
+   }
+  def startDate = results.getDate('SETUP_DT');
+
+  move startDate, "parm/startDt";
+ // move endDate, "parm/endDt";
+
+}]]></editDataArea><customizationOwner>CM</customizationOwner><stepSequence>5</stepSequence><doesTextContainVariables>false</doesTextContainVariables><text>Get startDate and endDate</text></scriptStep><scriptStep><canDisplay>false</canDisplay><scriptStepForFalse>0</scriptStepForFalse><nextScriptStep>0</nextScriptStep><script>CMChSummry</script><sortSequence>60</sortSequence><stepType>EDDT</stepType><scriptStepForTrue>0</scriptStepForTrue><version>13</version><editDataArea><![CDATA[move "parm/acctId" to "CMAccFinHist/head/key1/value";
+move "parm/startDt" to "CMAccFinHist/head/startDate";
+move "parm/endDt" to "CMAccFinHist/head/endDate";
+invokeSS 'CMAccFinHist' using "CMAccFinHist";
+move '' to $types;
+if ("count(parm/type) > 0")
+     for ($type in "parm/type/v")
+          move "concat($types,'&apos;',$type,'&apos;,')" to $types;
+     end-for;
+else
+     move "concat('Bill',',','Payment',',','Agency',',','Pending Agency Pay',',','Payment (pending)')" to $types;
+end-if;
+for ($result in "CMAccFinHist/mainData/history")
+     if ("contains($types,$result/label)")
+          move "$result/totalBillKwh" to "parm/o/+billPayList/kwh";
+          move "$result/label" to "parm/o/billPayList[last()]/type";
+          move "$result/detail[1]/bsegStartDt" to "parm/o/billPayList[last()]/startDate";
+          move "$result/detail[1]/bsegEndDt" to "parm/o/billPayList[last()]/endDate";
+          move "substring($result/date,1,10)" to $date;
+          move "$date" to "parm/o/billPayList[last()]/billDate";
+          move "$result/billId" to "parm/o/billPayList[last()]/billId";
+          if ("$result/label = 'Bill'")
+               move "$result/amount" to "parm/o/billPayList[last()]/amtDue";
+               move '0' to "parm/o/billPayList[last()]/amtPaid";
+          else
+               move '0' to "parm/o/billPayList[last()]/amtDue";
+               move "$result/amount" to "parm/o/billPayList[last()]/amtPaid";
+          end-if;
+     end-if;
+end-for;
+move "parm/o/billPayList" to $acctFinList;
+move null to "parm/o/billPayList";]]></editDataArea><customizationOwner>CM</customizationOwner><stepSequence>12</stepSequence><doesTextContainVariables>false</doesTextContainVariables><text>Retrieve financial information's</text></scriptStep><scriptStep><canDisplay>false</canDisplay><scriptStepForFalse>0</scriptStepForFalse><nextScriptStep>0</nextScriptStep><script>CMChSummry</script><sortSequence>70</sortSequence><stepType>EDDT</stepType><scriptStepForTrue>0</scriptStepForTrue><version>22</version><editDataArea><![CDATA[move "xs:integer('1')" to $startIndex;
+if ("string(parm/count) = $BLANK")
+     move "count($acctFinList)" to $endIndex;
+     if ("string(parm/pageSize)!=$BLANK and string(parm/page)!=$BLANK")
+          move "(xs:integer(parm/page)- xs:integer('1')) * xs:integer(parm/pageSize)" to $startIndex;
+          if ("xs:integer($startIndex) + xs:integer(parm/pageSize) < xs:integer($endIndex)")
+               move "xs:integer($startIndex) + xs:integer(parm/pageSize)" to $endIndex;
+          end-if;
+          move "xs:integer($startIndex) + 1" to $startIndex;
+     end-if;
+else
+     move "xs:integer($startIndex)" to $startIndex;
+     move "xs:integer(parm/count)" to $endIndex;
+end-if;
+for ($index in "xs:integer($startIndex) to xs:integer($endIndex)")
+     move "$acctFinList[$index]" to $billPayments;
+     move "$billPayments/billDate" to "parm/o/+billPayList/billDate";
+     move "$billPayments/startDate" to "parm/o/billPayList[last()]/startDate";
+     move "$billPayments/endDate" to "parm/o/billPayList[last()]/endDate";
+     move "$billPayments/amtDue" to "parm/o/billPayList[last()]/amtDue";
+     move "$billPayments/billId" to "parm/o/billPayList[last()]/billId";
+     move "$billPayments/type" to "parm/o/billPayList[last()]/type";
+     move "$billPayments/kwh" to "parm/o/billPayList[last()]/kwh";
+     move "$billPayments/amtPaid" to "parm/o/billPayList[last()]/amtPaid";
+end-for;]]></editDataArea><customizationOwner>CM</customizationOwner><stepSequence>11</stepSequence><doesTextContainVariables>false</doesTextContainVariables><text>Pagination</text></scriptStep><scriptStep><canDisplay>false</canDisplay><scriptStepForFalse>0</scriptStepForFalse><nextScriptStep>0</nextScriptStep><script>CMChSummry</script><sortSequence>80</sortSequence><stepType>EDDT</stepType><scriptStepForTrue>0</scriptStepForTrue><version>66</version><editDataArea><![CDATA[//move "$index" to "parm/o/totalDetailsRecords";
+move "count($acctFinList)" to "parm/o/totalDetailsRecords";
+move null to "parm/acctId";
+move null to "parm/startDt";
+move null to "parm/endDt";
+move null to "parm/type";
+move null to "parm/count";
+move null to "parm/page";
+move null to "parm/pageSize";]]></editDataArea><customizationOwner>CM</customizationOwner><stepSequence>8</stepSequence><doesTextContainVariables>false</doesTextContainVariables><text>make input null</text></scriptStep><scriptType>SVSC</scriptType><customizationOwner>CM</customizationOwner><scriptEngineVersion>F120</scriptEngineVersion><scriptDataArea><script>CMChSummry</script><dataAreaName>C1-RAcctSumm</dataAreaName><dataAreaType>SCHM</dataAreaType><schemaName>C1-RAcctSumm</schemaName><schemaType>F1SC</schemaType><version>5</version><customizationOwner>CM</customizationOwner></scriptDataArea><scriptDataArea><script>CMChSummry</script><dataAreaName>CM-EXCADJTYP</dataAreaName><dataAreaType>SCHM</dataAreaType><schemaName>CM-EXCADJTYP</schemaName><schemaType>F1BS</schemaType><version>2</version><customizationOwner>CM</customizationOwner></scriptDataArea><scriptDataArea><script>CMChSummry</script><dataAreaName>CMAccFinHist</dataAreaName><dataAreaType>SCHM</dataAreaType><schemaName>CMAccFinHist</schemaName><schemaType>F1SC</schemaType><version>1</version><customizationOwner>CM</customizationOwner></scriptDataArea><scriptDataArea><script>CMChSummry</script><dataAreaName>parm</dataAreaName><dataAreaType>SCSM</dataAreaType><schemaName>CMChSummry</schemaName><schemaType>F1SC</schemaType><version>3</version><customizationOwner>CM</customizationOwner></scriptDataArea><version>523</version><eligibilityOption>SEAE</eligibilityOption></boData></entities><entities><sequence>2</sequence><processingSequence>20</processingSequence><mo>SCRIPT</mo><pk1>CMAccFinHist</pk1><pk2/><pk3/><pk4/><pk5/><bo>F1-ScriptPhysicalBO</bo><boData><script>CMAccFinHist</script><longDescription>This script is used to retrieve Account's Financial History</longDescription><detailDescription>This script is used to retrieve Account's Financial History</detailDescription><schema><schemaName>CMAccFinHist</schemaName><schemaType>F1SC</schemaType><version>10</version><schemaDefinition><![CDATA[<schema>
+    <head type="group">
+        <includeDA name="WX-SSHeader"/>
+        <startDate default="%CurrentDate" dataType="string"/>
+        <endDate default="%CurrentDate" dataType="string"/>
+    </head>
+    <mainData type="group">
+        <startDate dataType="string"/>
+        <endDate dataType="string"/>
+        <history type="list">
+            <date dataType="string"/>
+            <label dataType="string"/>
+            <amount dataType="number"/>
+            <currency dataType="string"/>
+            <dueDate dataType="string"/>
+            <billId dataType="string"/>
+            <totalBillKwh dataType="string"/>
+            <detail type="list">
+                <label dataType="string"/>
+                <amount dataType="string"/>
+                <currency dataType="string"/>
+                <bsegId dataType="string"/>
+                <bsegStartDt dataType="string"/>
+                <bsegEndDt dataType="string"/>
+                <address dataType="string"/>
+                <!--Start Remove KCenti Defect 5057 11-30-2017-->
+                <!--<bsegKwhList type="list">-->
+                <bsegKwh dataType="string"/>
+                <!--</bsegKwhList>-->
+                <!--End Remove KCenti Defect 5057 11-30-2017-->
+            </detail>
+        </history>
+    </mainData>
+    <includeDA name="WX-CustomExtension"/>
+    <includeDA name="C1-SelfServiceErrorProcessing"/>
+</schema>]]></schemaDefinition><customizationOwner>CM</customizationOwner></schema><applicationServiceId>F1-DFLTS</applicationServiceId><scriptStep><canDisplay>false</canDisplay><scriptStepForFalse>0</scriptStepForFalse><nextScriptStep>0</nextScriptStep><script>CMAccFinHist</script><sortSequence>10</sortSequence><stepType>EDDT</stepType><scriptStepForTrue>0</scriptStepForTrue><version>27</version><editDataArea><![CDATA[move 'Payment' to $paymentsLabel;
+move 'Bill' to $billsLabel;
+move 'Agency' to $commitPayLabel;
+move 'Pending Agency Pay' to $commitPayLabelPend;]]></editDataArea><customizationOwner>CM</customizationOwner><stepSequence>3</stepSequence><doesTextContainVariables>false</doesTextContainVariables><text>Populate labels</text></scriptStep><scriptStep><canDisplay>false</canDisplay><scriptStepForFalse>0</scriptStepForFalse><nextScriptStep>0</nextScriptStep><script>CMAccFinHist</script><sortSequence>20</sortSequence><stepType>EDDT</stepType><scriptStepForTrue>0</scriptStepForTrue><version>33</version><editDataArea><![CDATA[move "parm/head/key1/value" to "CM-AcctFinHs/accountId";
+move "xs:date(parm/head/startDate)" to "CM-AcctFinHs/startDate";
+move "xs:date(parm/head/endDate)" to "CM-AcctFinHs/endDate";
+invokeBS 'CM-AcctFinHs' using "CM-AcctFinHs";]]></editDataArea><customizationOwner>CM</customizationOwner><stepSequence>6</stepSequence><doesTextContainVariables>false</doesTextContainVariables><text>Retrieve Billed Transaction</text></scriptStep><scriptStep><canDisplay>false</canDisplay><scriptStepForFalse>0</scriptStepForFalse><nextScriptStep>0</nextScriptStep><script>CMAccFinHist</script><sortSequence>30</sortSequence><stepType>EDDT</stepType><scriptStepForTrue>0</scriptStepForTrue><version>182</version><editDataArea><![CDATA[move null to "parm/mainData/history";
+move '0' to $bsegTotal;
+move 'false' to $isNetOrSpo;
+for ($history in "CM-AcctFinHs/results")
+     //Process C as Bill
+     if ("string($history/type) = 'C'")
+          move "$history/date" to "parm/mainData/+history/date";
+          move "$billsLabel" to "parm/mainData/history[last()]/label";
+          move "$history/billId" to "parm/mainData/history[last()]/billId";
+          //move "$currency" to "parm/mainData/history[last()]/currency";
+          move "$history/billId" to "WX-BillPageMaintenance/billId";
+          invokeBS 'WX-BillPageMaintenance' using "WX-BillPageMaintenance";
+          move "WX-BillPageMaintenance/endingBalance + WX-BillPageMaintenance/totalAmount" to "parm/mainData/history[last()]/amount";
+          move "WX-BillPageMaintenance/dueDate" to "parm/mainData/history[last()]/dueDate";
+          move "(xs:decimal(WX-BillPageMaintenance/beginningBalance)) + (xs:decimal(WX-BillPageMaintenance/totalPayments))" to $previousBalance;
+          move "(xs:decimal(WX-BillPageMaintenance/totalAdjustments)) + (xs:decimal(WX-BillPageMaintenance/totalCorrections))" to $adjustmentsAndCorrections;
+          move null to "CM-BILLBSFT";
+          move '0' to $bsegTotal;
+          for ($result in "WX-BillPageMaintenance/billSegments")
+               move "$result/billSegmentId" to "parm/mainData/history[last()]/+detail/bsegId";
+               move "$result/currentAmount" to "parm/mainData/history[last()]/detail[last()]/amount";
+               move "$result/saId" to "CM-BILLBSFT/saId";
+               invokeBS 'CM-BILLBSFT' using "CM-BILLBSFT";
+               move "CM-BILLBSFT/results/descr" to "parm/mainData/history[last()]/detail[last()]/label";
+               //move "$currency" to "parm/mainData/history[last()]/detail[last()]/currency";
+               move "$result/startDate" to "parm/mainData/history[last()]/detail[last()]/bsegStartDt";
+               move "$result/endDate" to "parm/mainData/history[last()]/detail[last()]/bsegEndDt";
+               move null to "CM-RetBSAddKWH";
+               if ("contains(CM-BILLBSFT/results/saTypeCd, 'NET')")
+                    move 'NETUSAGE' to "CM-RetBSAddKWH/sqiCd";
+                    move 'true' to $isNetOrSpo;
+               end-if;
+               if ("contains(CM-BILLBSFT/results/saTypeCd, 'SPO')")
+                    move 'SPOUSAGE' to "CM-RetBSAddKWH/sqiCd";
+                    move 'true' to $isNetOrSpo;
+               end-if;
+               move "$result/billSegmentId" to "CM-RetBSAddKWH/bsegId";
+               invokeBS 'CM-RetBSAddKWH' using "CM-RetBSAddKWH";
+               if ("CM-RetBSAddKWH/rowCount > 0")
+                    move "CM-RetBSAddKWH/results[last()]/kwh" to $bsegKWH;
+               else
+                    move "CM-RetBSAddKWH/results[1]/kwh" to $bsegKWH;
+               end-if;
+               move "$result/serviceAddress" to "parm/mainData/history[last()]/detail[last()]/address";
+               move "$bsegKWH" to "parm/mainData/history[last()]/detail[last()]/bsegKwh";
+               move "(xs:decimal($bsegTotal)) + (xs:decimal($bsegKWH))" to $bsegTotal;
+          end-for;
+     end-if;
+     //Process P as Payment
+     if ("string($history/type) = 'P'")
+          move "$history/date" to "parm/mainData/+history/date";
+          move "$history/amount" to "parm/mainData/history[last()]/amount";
+          move "$paymentsLabel" to "parm/mainData/history[last()]/label";
+          move "$history/payEvt" to "CM-CheckCommitPay/payEvtId";
+          invokeBS 'CM-CheckCommitPay' using "CM-CheckCommitPay";
+          if ("CM-CheckCommitPay/rowCount > 0")
+               if ("CM-CheckCommitPay/results/charVal = 'YES'")
+                    move "$commitPayLabel" to "parm/mainData/history[last()]/label";
+               end-if;
+               if ("CM-CheckCommitPay/results/charVal = 'NO'")
+                    move "$commitPayLabelPend" to "parm/mainData/history[last()]/label";
+               end-if;
+          end-if;
+          // move "$currency" to "parm/mainData/history[last()]/currency";
+          move "$BLANK" to "parm/mainData/history[last()]/billId";
+     end-if;
+     move "$bsegTotal" to "parm/mainData/history[last()]/totalBillKwh";
+end-for;]]></editDataArea><customizationOwner>CM</customizationOwner><stepSequence>7</stepSequence><doesTextContainVariables>false</doesTextContainVariables><text>Process Billed Transaction</text></scriptStep><scriptStep><canDisplay>false</canDisplay><scriptStepForFalse>0</scriptStepForFalse><nextScriptStep>0</nextScriptStep><script>CMAccFinHist</script><sortSequence>40</sortSequence><stepType>EDDT</stepType><scriptStepForTrue>0</scriptStepForTrue><version>10</version><editDataArea><![CDATA[move "parm/head/key1/value" to $accountId;
+move 'WX-SelfServiceIntegration' to "WX-SelfServiceIntegration/bo";
+invokeBO 'WX-SelfServiceIntegration' using "WX-SelfServiceIntegration" for read;
+move "WX-SelfServiceIntegration/serviceTaskBOs/option[boTaskType='WXOT']/serviceTaskType" to $serviceTaskType;
+move null to "F1-DetermineBo";
+move 'F1-STASKTYPE' to "F1-DetermineBo/input/mo";
+move "$serviceTaskType" to "F1-DetermineBo/input/pkValue1";
+invokeBS 'F1-DetermineBo' using "F1-DetermineBo";
+move "F1-DetermineBo/output/bo" to $oneTimePayTaskTypeBo;
+move null to "F1-RetBOOpt";
+move "$oneTimePayTaskTypeBo" to "F1-RetBOOpt/input/bo";
+move 'F1BX' to "F1-RetBOOpt/input/boOptionType";
+move 'false' to "F1-RetBOOpt/input/isMultiple";
+move 'true' to "F1-RetBOOpt/isRequired";
+invokeSS 'F1-RetBOOpt' using "F1-RetBOOpt";
+move "F1-RetBOOpt/output/values[1]/boOptionValue" to $oneTimePayTaskBo;
+move "$accountId" to "C1-PNDPYEXST/accountId";
+move "$oneTimePayTaskBo" to "C1-PNDPYEXST/businessObject";
+invokeBS 'C1-PNDPYEXST' using "C1-PNDPYEXST";
+for ($serviceTask in "C1-PNDPYEXST/results")
+     declareBO "$oneTimePayTaskBo" as 'oneTimePayTaskBoDA';
+     move "$serviceTask/serviceTaskId" to "oneTimePayTaskBoDA/serviceTaskId";
+     invokeBO "$oneTimePayTaskBo" using "oneTimePayTaskBoDA" for read;
+     move 'Payment (pending)' to "parm/mainData/+history/label";
+     move "oneTimePayTaskBoDA/paymentInfo/paymentAmount" to "parm/mainData/history[last()]/amount";
+     move "oneTimePayTaskBoDA/paymentInfo/paymentDate" to "parm/mainData/history[last()]/date";
+end-for;]]></editDataArea><customizationOwner>CM</customizationOwner><stepSequence>8</stepSequence><doesTextContainVariables>false</doesTextContainVariables><text>Retrieve Pending One Time Pay</text></scriptStep><scriptType>SVSC</scriptType><customizationOwner>CM</customizationOwner><scriptEngineVersion>F130</scriptEngineVersion><scriptDataArea><script>CMAccFinHist</script><dataAreaName>C1-PNDPYEXST</dataAreaName><dataAreaType>SCHM</dataAreaType><schemaName>C1-PNDPYEXST</schemaName><schemaType>F1BS</schemaType><version>1</version><customizationOwner>CM</customizationOwner></scriptDataArea><scriptDataArea><script>CMAccFinHist</script><dataAreaName>CM-AcctFinHs</dataAreaName><dataAreaType>SCHM</dataAreaType><schemaName>CM-AcctFinHs</schemaName><schemaType>F1BS</schemaType><version>3</version><customizationOwner>CM</customizationOwner></scriptDataArea><scriptDataArea><script>CMAccFinHist</script><dataAreaName>CM-BILLBSFT</dataAreaName><dataAreaType>SCHM</dataAreaType><schemaName>CM-BILLBSFT</schemaName><schemaType>F1BS</schemaType><version>3</version><customizationOwner>CM</customizationOwner></scriptDataArea><scriptDataArea><script>CMAccFinHist</script><dataAreaName>CM-CheckCommitPay</dataAreaName><dataAreaType>SCHM</dataAreaType><schemaName>CM-CheckCommitPay</schemaName><schemaType>F1BS</schemaType><version>3</version><customizationOwner>CM</customizationOwner></scriptDataArea><scriptDataArea><script>CMAccFinHist</script><dataAreaName>CM-RetBSAddKWH</dataAreaName><dataAreaType>SCHM</dataAreaType><schemaName>CM-RetBSAddKWH</schemaName><schemaType>F1BS</schemaType><version>3</version><customizationOwner>CM</customizationOwner></scriptDataArea><scriptDataArea><script>CMAccFinHist</script><dataAreaName>F1-DetermineBo</dataAreaName><dataAreaType>SCHM</dataAreaType><schemaName>F1-DetermineBo</schemaName><schemaType>F1BS</schemaType><version>1</version><customizationOwner>CM</customizationOwner></scriptDataArea><scriptDataArea><script>CMAccFinHist</script><dataAreaName>F1-RetBOOpt</dataAreaName><dataAreaType>SCHM</dataAreaType><schemaName>F1-RetBOOpt</schemaName><schemaType>F1SC</schemaType><version>1</version><customizationOwner>CM</customizationOwner></scriptDataArea><scriptDataArea><script>CMAccFinHist</script><dataAreaName>WX-BillPageMaintenance</dataAreaName><dataAreaType>SCHM</dataAreaType><schemaName>WX-BillPageMaintenance</schemaName><schemaType>F1BS</schemaType><version>3</version><customizationOwner>CM</customizationOwner></scriptDataArea><scriptDataArea><script>CMAccFinHist</script><dataAreaName>WX-BillSegment</dataAreaName><dataAreaType>SCHM</dataAreaType><schemaName>WX-BillSegment</schemaName><schemaType>F1BO</schemaType><version>3</version><customizationOwner>CM</customizationOwner></scriptDataArea><scriptDataArea><script>CMAccFinHist</script><dataAreaName>WX-SelfServiceIntegration</dataAreaName><dataAreaType>SCHM</dataAreaType><schemaName>WX-SelfServiceIntegration</schemaName><schemaType>F1BO</schemaType><version>1</version><customizationOwner>CM</customizationOwner></scriptDataArea><scriptDataArea><script>CMAccFinHist</script><dataAreaName>parm</dataAreaName><dataAreaType>SCSM</dataAreaType><schemaName>CMAccFinHist</schemaName><schemaType>F1SC</schemaType><version>2</version><customizationOwner>CM</customizationOwner></scriptDataArea><version>288</version><eligibilityOption>SENE</eligibilityOption></boData></entities><entities><sequence>3</sequence><processingSequence>30</processingSequence><mo>F1-IWSSVC</mo><pk1>CM-PayBill</pk1><pk2/><pk3/><pk4/><pk5/><bo>F1-InboundWebServicePhysicalBO</bo><boData><iwsName>CM-PayBill</iwsName><webSvcClass>F1RT</webSvcClass><iwsRestVersion>F120</iwsRestVersion><description>Pay bill single account</description><isTracing>false</isTracing><isActive>true</isActive><version>27</version><iwsServiceOperation><iwsName>CM-PayBill</iwsName><operationName>billDetails</operationName><schemaName>CmBillDtl</schemaName><schemaType>F1SC</schemaType><restHTTPMethod>GET</restHTTPMethod><resourceURI>/getBillDetail/{accountId}</resourceURI><customizationOwner>CM</customizationOwner><version>21</version><iwsServiceOperationParameter><iwsName>CM-PayBill</iwsName><operationName>billDetails</operationName><parameterExternalReference>accountId</parameterExternalReference><version>20</version><customizationOwner>CM</customizationOwner><operationParameterType>PATH</operationParameterType><parameterSchemaXpath>request/acctId</parameterSchemaXpath></iwsServiceOperationParameter></iwsServiceOperation><iwsServiceOperation><iwsName>CM-PayBill</iwsName><operationName>chargeSummary</operationName><schemaName>CMChSummry</schemaName><schemaType>F1SC</schemaType><restHTTPMethod>POST</restHTTPMethod><resourceURI>/getChargeSummary</resourceURI><customizationOwner>CM</customizationOwner><version>25</version></iwsServiceOperation><iwsServiceOperation><iwsName>CM-PayBill</iwsName><operationName>currentBillinfo</operationName><schemaName>CmCurBillDtl</schemaName><schemaType>F1SC</schemaType><restHTTPMethod>GET</restHTTPMethod><resourceURI>/getCurrentBillInfo/{accountId}</resourceURI><customizationOwner>CM</customizationOwner><version>21</version><iwsServiceOperationParameter><iwsName>CM-PayBill</iwsName><operationName>currentBillinfo</operationName><parameterExternalReference>accountId</parameterExternalReference><version>20</version><customizationOwner>CM</customizationOwner><operationParameterType>PATH</operationParameterType><parameterSchemaXpath>acctId</parameterSchemaXpath></iwsServiceOperationParameter></iwsServiceOperation><iwsServiceOperation><iwsName>CM-PayBill</iwsName><operationName>getCollectionActivity</operationName><schemaName>CmActColProc</schemaName><schemaType>F1SC</schemaType><restHTTPMethod>GET</restHTTPMethod><resourceURI>/getCollectionActivity/{accountId}</resourceURI><customizationOwner>CM</customizationOwner><version>8</version><iwsServiceOperationParameter><iwsName>CM-PayBill</iwsName><operationName>getCollectionActivity</operationName><parameterExternalReference>accountId</parameterExternalReference><version>7</version><customizationOwner>CM</customizationOwner><operationParameterType>PATH</operationParameterType><parameterSchemaXpath>accountId</parameterSchemaXpath></iwsServiceOperationParameter><iwsServiceOperationParameter><iwsName>CM-PayBill</iwsName><operationName>getCollectionActivity</operationName><parameterExternalReference>collEvtStatFlg</parameterExternalReference><version>3</version><customizationOwner>CM</customizationOwner><operationParameterType>QRY</operationParameterType><parameterSchemaXpath>collEvtStatFlg</parameterSchemaXpath></iwsServiceOperationParameter></iwsServiceOperation><iwsServiceOperation><iwsName>CM-PayBill</iwsName><operationName>getEqualPay</operationName><schemaName>CmGetEqualPy</schemaName><schemaType>F1SC</schemaType><restHTTPMethod>GET</restHTTPMethod><resourceURI>/getEqualPay/{accountId}</resourceURI><customizationOwner>CM</customizationOwner><version>17</version><iwsServiceOperationParameter><iwsName>CM-PayBill</iwsName><operationName>getEqualPay</operationName><parameterExternalReference>accountId</parameterExternalReference><version>16</version><customizationOwner>CM</customizationOwner><operationParameterType>PATH</operationParameterType><parameterSchemaXpath>acctId</parameterSchemaXpath></iwsServiceOperationParameter></iwsServiceOperation><iwsServiceOperation><iwsName>CM-PayBill</iwsName><operationName>getPreferredDueDate</operationName><schemaName>CmGetAcctPDD</schemaName><schemaType>F1SC</schemaType><restHTTPMethod>GET</restHTTPMethod><resourceURI>/getPreferredDueDate/{accountId}</resourceURI><customizationOwner>CM</customizationOwner><version>17</version><iwsServiceOperationParameter><iwsName>CM-PayBill</iwsName><operationName>getPreferredDueDate</operationName><parameterExternalReference>accountId</parameterExternalReference><version>16</version><customizationOwner>CM</customizationOwner><operationParameterType>PATH</operationParameterType><parameterSchemaXpath>acctId</parameterSchemaXpath></iwsServiceOperationParameter></iwsServiceOperation><iwsServiceOperation><iwsName>CM-PayBill</iwsName><operationName>makePayment</operationName><schemaName>CM-MakePayV2</schemaName><schemaType>F1SC</schemaType><restHTTPMethod>POST</restHTTPMethod><resourceURI>/makePayment</resourceURI><customizationOwner>CM</customizationOwner><version>4</version></iwsServiceOperation><iwsServiceOperation><iwsName>CM-PayBill</iwsName><operationName>paperlessIsEnrolled</operationName><schemaName>CmIsPLEnrl</schemaName><schemaType>F1SC</schemaType><restHTTPMethod>POST</restHTTPMethod><resourceURI>/paperlessIsEnrolled</resourceURI><customizationOwner>CM</customizationOwner><version>20</version></iwsServiceOperation><iwsServiceOperation><iwsName>CM-PayBill</iwsName><operationName>paymentAlert</operationName><schemaName>CmPayAlrt</schemaName><schemaType>F1SC</schemaType><restHTTPMethod>POST</restHTTPMethod><resourceURI>/getPaymentAlert</resourceURI><customizationOwner>CM</customizationOwner><version>10</version></iwsServiceOperation><iwsServiceOperation><iwsName>CM-PayBill</iwsName><operationName>paymentEligibility</operationName><schemaName>CmGetPayElig</schemaName><schemaType>F1SC</schemaType><restHTTPMethod>POST</restHTTPMethod><resourceURI>/getPaymentEligibility</resourceURI><customizationOwner>CM</customizationOwner><version>13</version></iwsServiceOperation><resourceCategory>C1-SERVICE</resourceCategory><businessObject>F1-InboundRESTWebService</businessObject><uriComponent>/payBill</uriComponent><customizationOwner>CM</customizationOwner><shouldDebug>false</shouldDebug><postError>false</postError><serviceRevision>18</serviceRevision></boData></entities></bundle>
+</root>

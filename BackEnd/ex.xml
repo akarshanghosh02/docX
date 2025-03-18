@@ -1,0 +1,307 @@
+<root>
+	<sourceEnvironment>https://202.66.172.124:6502/ouaf/usermap?language=ENG</sourceEnvironment>
+	<sourceProductVersion>Customer Release V4.3.0.4.0</sourceProductVersion>
+	<bundle>
+		<entities>
+			<sequence>1</sequence>
+			<processingSequence>10</processingSequence>
+			<mo>F1-DATA AREA</mo>
+			<pk1>CM-ADDRESS</pk1>
+			<pk2/>
+			<pk3/>
+			<pk4/>
+			<pk5/>
+			<bo>F1-DataAreaPhysicalBO</bo>
+			<boData>
+				<dataArea>CM-ADDRESS</dataArea>
+				<longDescription>Address info</longDescription>
+				<schema>
+					<schemaDefinition><![CDATA[<schema>
+<premiseType dataType="string"/>
+<address1 dataType="string"/>
+<address2 dataType="string"/>
+<address3 dataType="string"/>
+<address4 dataType="string"/>
+<cisDivision dataType="string"/>
+<country dataType="string"/>
+<county dataType="string"/>
+<city dataType="string"/>
+<state dataType="string"/>
+<zipCode dataType="string"/>
+<isMailingAddress dataType="boolean"/>
+</schema>]]></schemaDefinition>
+					<schemaName>CM-ADDRESS</schemaName>
+					<schemaType>F1DA</schemaType>
+					<customizationOwner>CM</customizationOwner>
+					<version>6</version>
+				</schema>
+				<description>Address info</description>
+				<customizationOwner>CM</customizationOwner>
+				<version>9</version>
+			</boData>
+		</entities>
+		<entities>
+			<sequence>2</sequence>
+			<processingSequence>20</processingSequence>
+			<mo>F1-UI MAP</mo>
+			<pk1>CM-U11BN</pk1>
+			<pk2/>
+			<pk3/>
+			<pk4/>
+			<pk5/>
+			<bo>F1-UIMapPhysicalBO</bo>
+			<boData>
+				<mapCd>CM-U11BN</mapCd>
+				<schema>
+					<schemaDefinition><![CDATA[<schema>
+<action/>
+<boGroup type="group">
+<includeBO name="CM-U11BN"/>
+</boGroup>
+</schema>]]></schemaDefinition>
+					<schemaName>CM-U11BN</schemaName>
+					<schemaType>F1MP</schemaType>
+					<customizationOwner>CM</customizationOwner>
+					<version>4</version>
+				</schema>
+				<uiMapType>F1FL</uiMapType>
+				<description>CM-U11BN</description>
+				<customizationOwner>CM</customizationOwner>
+				<htmlDefn><![CDATA[<html xmlns:web="http://xml.apache.org/xalan/java/com.splwg.base.web.common">
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title></title>
+<link href="cisDisabled.css" type="text/css" rel="stylesheet">
+</head>
+<body oraError="automate:true; prefix:boGroup">
+<table role="presentation" oraMdLabel="EMPTY_SUMMARY" style="padding:12px;width:100%;">
+<tr class="oraErrorText">
+<td><a onclick="oraShowErrorAlert(); return false;" href=""><span oraErrorVar="ERRMSG-TEXT" class="oraErrorText" id="ERRMSG-TEXT-SPAN" aria-describedBy="ERRMSG-TEXT-SPAN" role="alert"></span></a></td>
+</tr>
+</table>
+<table role="presentation" oraMdLabel="EMPTY_SUMMARY" style="border-spacing:4px;width:100%;">
+<tr>
+<td oraLabel="boGroup/factId" class="oraLabel oraTableLabel"><label for="boGroup_factId"></label></td><td class="oraNormal oraTableData"><input id="boGroup_factId" class="oraInput" oraField="boGroup/factId"></td>
+</tr>
+
+
+<tr>
+<td oraLabel="boGroup/bo" class="oraLabel oraTableLabel"><label for="boGroup_bo"></label></td><td class="oraNormal oraTableData"><input id="boGroup_bo" class="oraInput" oraField="boGroup/bo"></td>
+</tr>
+
+<tr>
+<td oraLabel="boGroup/user" class="oraLabel oraTableLabel"><label for="boGroup_user"></label></td><td class="oraNormal oraTableData"><input id="boGroup_user" class="oraInput" oraField="boGroup/user"></td>
+</tr>
+
+<tr>
+<td oraLabel="boGroup/boStatus" class="oraLabel oraTableLabel"><label for="boGroup_boStatus"></label></td><td class="oraNormal oraTableData"><input id="boGroup_boStatus" class="oraInput" oraField="boGroup/boStatus"></td>
+</tr>
+
+<tr>
+<td oraLabel="boGroup/statusUpdateDttm" class="oraLabel oraTableLabel"><label for="boGroup_statusUpdateDttm"></label></td><td class="oraNormal oraTableData"><input id="boGroup_statusUpdateDttm" class="oraInput" oraField="boGroup/statusUpdateDttm"></td>
+</tr>
+
+
+
+<tr>
+<td oraLabel="boGroup/personID" class="oraLabel oraTableLabel"><label for="boGroup_personID"></label></td><td class="oraNormal oraTableData"><input id="boGroup_personID" class="oraInput" oraField="boGroup/personID"></td>
+</tr>
+<tr>
+<td oraLabel="boGroup/accountID" class="oraLabel oraTableLabel"><label for="boGroup_accountID"></label></td><td class="oraNormal oraTableData"><input id="boGroup_accountID" class="oraInput" oraField="boGroup/accountID"></td>
+</tr>
+<tr>
+<td oraLabel="boGroup/customerContactType" class="oraLabel oraTableLabel"><label for="boGroup_customerContactType"></label></td><td class="oraNormal oraTableData"><input id="boGroup_customerContactType" class="oraInput" oraField="boGroup/customerContactType"></td>
+</tr>
+<tr>
+<td oraLabel="boGroup/customerContactClass" class="oraLabel oraTableLabel"><label for="boGroup_customerContactClass"></label></td><td class="oraNormal oraTableData"><input id="boGroup_customerContactClass" class="oraInput" oraField="boGroup/customerContactClass"></td>
+</tr>
+<tr>
+<td oraLabel="boGroup/toDoType" class="oraLabel oraTableLabel"><label for="boGroup_toDoType"></label></td><td class="oraNormal oraTableData"><input id="boGroup_toDoType" class="oraInput" oraField="boGroup/toDoType"></td>
+</tr>
+<tr>
+<td class="oraSectionStart oraEmbeddedTable" colspan="2">
+<table role="presentation" oraMdLabel="EMPTY_SUMMARY" style="border-spacing:2px;">
+<tr>
+<td><input onClick="oraSubmitMap('SAVE');" oraMdLabel="SAVE_BTN_LBL" class="oraButton" type="button"><input onClick="oraSubmitMap('CANCEL',false);" oraMdLabel="CANCEL_LBL" class="oraButton" type="button"></td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</body>
+<xml style="display:none;"></xml>
+</html>]]></htmlDefn>
+				<version>10</version>
+			</boData>
+		</entities>
+		<entities>
+			<sequence>3</sequence>
+			<processingSequence>30</processingSequence>
+			<mo>BATCH CNTL</mo>
+			<pk1>ADM</pk1>
+			<pk2/>
+			<pk3/>
+			<pk4/>
+			<pk5/>
+			<bo>F1-BatchContolMO</bo>
+			<boData>
+				<batchControl>ADM</batchControl>
+				<batchControlType>F1NT</batchControlType>
+				<longDescription><![CDATA[The account debt monitor analyzes all accounts whose C&C review date is on or before the supplied business date. For more information about the account debt monitor, launch the online help and navigate to the index entry "credit & collections, monitoring overdue debt".
+
+The input parameter controls how the trigger date is set on collection events that are created by this process. For more information about date arithmetic options, launch the online help and navigate to the index entry "calendar,calendar days versus work days".
+
+This process is multi-threaded.
+Records between commits: 100
+Minutes between cursor re-initiation: 15
+
+This process supports creating To Do entries for object specific errors. For more information, launch the online help and navigate to the index entry "background processes, processing errors".]]></longDescription>
+				<programType>JAVA</programType>
+				<timerInterval>0</timerInterval>
+				<applicationServiceId>ADM</applicationServiceId>
+				<isTracingSQL>false</isTracingSQL>
+				<isTracingProgramStart>false</isTracingProgramStart>
+				<isTracingStandardOut>false</isTracingStandardOut>
+				<batchControlParameter>
+					<batchControl>ADM</batchControl>
+					<sequence>10</sequence>
+					<batchParameterName>addWorkDays</batchParameterName>
+					<batchParameterValue>Y</batchParameterValue>
+					<isRequired>false</isRequired>
+					<version>1</version>
+					<customizationOwner>C1</customizationOwner>
+					<textSecurity>NONE</textSecurity>
+					<description>Calculate Trigger Date</description>
+					<longDescription>Add work (Y) or calendar days (N)</longDescription>
+				</batchControlParameter>
+				<batchControlParameter>
+					<batchControl>ADM</batchControl>
+					<sequence>20</sequence>
+					<batchParameterName>incMinDaysRvw</batchParameterName>
+					<isRequired>false</isRequired>
+					<version>1</version>
+					<customizationOwner>C1</customizationOwner>
+					<textSecurity>NONE</textSecurity>
+					<description>Include Minimum Days Review (Y/N)</description>
+					<longDescription>Include Minimum Days Review (Y/N).</longDescription>
+				</batchControlParameter>
+				<batchControlParameter>
+					<batchControl>ADM</batchControl>
+					<sequence>30</sequence>
+					<batchParameterName>cisDivision</batchParameterName>
+					<isRequired>false</isRequired>
+					<version>1</version>
+					<customizationOwner>C1</customizationOwner>
+					<textSecurity>NONE</textSecurity>
+					<description>CIS Division</description>
+					<longDescription>Enter a value here to filter by CIS Division.</longDescription>
+				</batchControlParameter>
+				<batchControlParameter>
+					<batchControl>ADM</batchControl>
+					<sequence>40</sequence>
+					<batchParameterName>maxErrors</batchParameterName>
+					<isRequired>false</isRequired>
+					<version>1</version>
+					<customizationOwner>C1</customizationOwner>
+					<textSecurity>NONE</textSecurity>
+					<description>Override maximum errors</description>
+					<longDescription>Enter a value here to override the maximum number of errors allowed before the run is terminated.</longDescription>
+				</batchControlParameter>
+				<batchControlParameter>
+					<batchControl>ADM</batchControl>
+					<sequence>50</sequence>
+					<batchParameterName>DIST-THD-POOL</batchParameterName>
+					<isRequired>false</isRequired>
+					<version>1</version>
+					<customizationOwner>C1</customizationOwner>
+					<textSecurity>NONE</textSecurity>
+					<description>Thread Pool Name</description>
+					<longDescription>Thread pool name to use if the DEFAULT thread pool is not desired.</longDescription>
+				</batchControlParameter>
+				<threadCount>0</threadCount>
+				<description>Account debt monitor</description>
+				<shouldAccumulateAllInstances>true</shouldAccumulateAllInstances>
+				<maximumCommitRecords>0</maximumCommitRecords>
+				<batchControlAlgorithm>
+					<batchControl>ADM</batchControl>
+					<batchControlSystemEvent>F1BR</batchControlSystemEvent>
+					<sequence>10</sequence>
+					<algorithm>C1-ADMP-SR</algorithm>
+					<customizationOwner>C1</customizationOwner>
+					<version>1</version>
+				</batchControlAlgorithm>
+				<version>25</version>
+				<isTracingProgramEnd>false</isTracingProgramEnd>
+				<batchCategory>F1PR</batchCategory>
+				<programName>com.splwg.ccb.domain.creditcollections.batch.AccountDebtMonitorProcess</programName>
+				<customizationOwner>C1</customizationOwner>
+			</boData>
+		</entities>
+		<entities>
+			<sequence>4</sequence>
+			<processingSequence>40</processingSequence>
+			<mo>PORTAL</mo>
+			<pk1>C1ACMACR</pk1>
+			<pk2/>
+			<pk3/>
+			<pk4/>
+			<pk5/>
+			<bo>F1-PortalPhysicalBO</bo>
+			<boData>
+				<portal>C1ACMACR</portal>
+				<portalType>PRTL</portalType>
+				<portalZone>
+					<customizationOwner>C1</customizationOwner>
+					<zone>C1-ACMACL</zone>
+					<version>1</version>
+					<portal>C1ACMACR</portal>
+					<sortSequence>20</sortSequence>
+					<sortSequenceOvrd>0</sortSequenceOvrd>
+					<zoneRefreshPeriod>0</zoneRefreshPeriod>
+					<canDisplay>true</canDisplay>
+					<isZoneInitiallyCollapsed>false</isZoneInitiallyCollapsed>
+				</portalZone>
+				<portalZone>
+					<customizationOwner>C1</customizationOwner>
+					<zone>C1-ACMARD</zone>
+					<version>1</version>
+					<portal>C1ACMACR</portal>
+					<sortSequence>10</sortSequence>
+					<sortSequenceOvrd>0</sortSequenceOvrd>
+					<zoneRefreshPeriod>0</zoneRefreshPeriod>
+					<canDisplay>true</canDisplay>
+					<isZoneInitiallyCollapsed>false</isZoneInitiallyCollapsed>
+				</portalZone>
+				<customizationOwner>C1</customizationOwner>
+				<description><![CDATA[Sample & Submit Request]]></description>
+				<programComponent>C1ACMACRTM</programComponent>
+				<portalOption>
+					<portal>C1ACMACR</portal>
+					<portalOptionType>F1PA</portalOptionType>
+					<sequence>10</sequence>
+					<portalOptionValue>C1ACMACR-ADD</portalOptionValue>
+					<version>1</version>
+					<customizationOwner>C1</customizationOwner>
+				</portalOption>
+				<portalOption>
+					<portal>C1ACMACR</portal>
+					<portalOptionType>F1PA</portalOptionType>
+					<sequence>20</sequence>
+					<portalOptionValue>C1ACMACR-PA</portalOptionValue>
+					<version>1</version>
+					<customizationOwner>C1</customizationOwner>
+				</portalOption>
+				<portalOption>
+					<portal>C1ACMACR</portal>
+					<portalOptionType>F1PK</portalOptionType>
+					<sequence>10</sequence>
+					<portalOptionValue>C1-ACTRQ</portalOptionValue>
+					<version>1</version>
+					<customizationOwner>C1</customizationOwner>
+				</portalOption>
+				<userConfig>N</userConfig>
+				<version>1</version>
+			</boData>
+		</entities>
+	</bundle>
+</root>

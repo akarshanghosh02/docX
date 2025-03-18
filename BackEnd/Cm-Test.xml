@@ -1,0 +1,1184 @@
+<root>
+	<sourceEnvironment>https://202.66.172.124:6502/ouaf/usermap?language=ENG</sourceEnvironment>
+	<sourceProductVersion>Customer Release V4.3.0.4.0</sourceProductVersion>
+	<bundle>
+		<entities>
+			<sequence>1</sequence>
+			<processingSequence>10</processingSequence>
+			<mo>CONTENT ZONE</mo>
+			<pk1>CM_SAD</pk1>
+			<pk2/>
+			<pk3/>
+			<pk4/>
+			<pk5/>
+			<bo>F1-ZonePhysicalBO</bo>
+			<boData>
+				<zone>CM_SAD</zone>
+				<applicationServiceId>CILCAAHP</applicationServiceId>
+				<zoneHandler>F1-DE-SINGLE</zoneHandler>
+				<description>SA Details</description>
+				<customizationOwner>CM</customizationOwner>
+				<portalZoneWidth>HALF</portalZoneWidth>
+				<zoneParameter>
+					<parameterName>ACOL1</parameterName>
+					<zoneHandler>F1-DE-SINGLE</zoneHandler>
+					<version>9</version>
+					<zone>CM_SAD</zone>
+					<customizationOwner>CM</customizationOwner>
+					<parameterValue><![CDATA[source=SQLCOL
+sqlcol=SA_ID]]></parameterValue>
+				</zoneParameter>
+				<zoneParameter>
+					<parameterName>ACOL10</parameterName>
+					<zoneHandler>F1-DE-SINGLE</zoneHandler>
+					<version>9</version>
+					<zone>CM_SAD</zone>
+					<customizationOwner>CM</customizationOwner>
+				</zoneParameter>
+				<zoneParameter>
+					<parameterName>ACOL11</parameterName>
+					<zoneHandler>F1-DE-SINGLE</zoneHandler>
+					<version>9</version>
+					<zone>CM_SAD</zone>
+					<customizationOwner>CM</customizationOwner>
+				</zoneParameter>
+				<zoneParameter>
+					<parameterName>ACOL12</parameterName>
+					<zoneHandler>F1-DE-SINGLE</zoneHandler>
+					<version>9</version>
+					<zone>CM_SAD</zone>
+					<customizationOwner>CM</customizationOwner>
+				</zoneParameter>
+				<zoneParameter>
+					<parameterName>ACOL13</parameterName>
+					<zoneHandler>F1-DE-SINGLE</zoneHandler>
+					<version>9</version>
+					<zone>CM_SAD</zone>
+					<customizationOwner>CM</customizationOwner>
+				</zoneParameter>
+				<zoneParameter>
+					<parameterName>ACOL14</parameterName>
+					<zoneHandler>F1-DE-SINGLE</zoneHandler>
+					<version>9</version>
+					<zone>CM_SAD</zone>
+					<customizationOwner>CM</customizationOwner>
+				</zoneParameter>
+				<zoneParameter>
+					<parameterName>ACOL15</parameterName>
+					<zoneHandler>F1-DE-SINGLE</zoneHandler>
+					<version>9</version>
+					<zone>CM_SAD</zone>
+					<customizationOwner>CM</customizationOwner>
+				</zoneParameter>
+				<zoneParameter>
+					<parameterName>ACOL16</parameterName>
+					<zoneHandler>F1-DE-SINGLE</zoneHandler>
+					<version>9</version>
+					<zone>CM_SAD</zone>
+					<customizationOwner>CM</customizationOwner>
+				</zoneParameter>
+				<zoneParameter>
+					<parameterName>ACOL17</parameterName>
+					<zoneHandler>F1-DE-SINGLE</zoneHandler>
+					<version>9</version>
+					<zone>CM_SAD</zone>
+					<customizationOwner>CM</customizationOwner>
+				</zoneParameter>
+				<zoneParameter>
+					<parameterName>ACOL18</parameterName>
+					<zoneHandler>F1-DE-SINGLE</zoneHandler>
+					<version>9</version>
+					<zone>CM_SAD</zone>
+					<customizationOwner>CM</customizationOwner>
+				</zoneParameter>
+				<zoneParameter>
+					<parameterName>ACOL19</parameterName>
+					<zoneHandler>F1-DE-SINGLE</zoneHandler>
+					<version>9</version>
+					<zone>CM_SAD</zone>
+					<customizationOwner>CM</customizationOwner>
+				</zoneParameter>
+				<zoneParameter>
+					<parameterName>ACOL2</parameterName>
+					<zoneHandler>F1-DE-SINGLE</zoneHandler>
+					<version>9</version>
+					<zone>CM_SAD</zone>
+					<customizationOwner>CM</customizationOwner>
+					<parameterValue><![CDATA[source=SQLCOL
+sqlcol=SA_STATUS_FLG]]></parameterValue>
+				</zoneParameter>
+				<zoneParameter>
+					<parameterName>ACOL20</parameterName>
+					<zoneHandler>F1-DE-SINGLE</zoneHandler>
+					<version>9</version>
+					<zone>CM_SAD</zone>
+					<customizationOwner>CM</customizationOwner>
+				</zoneParameter>
+				<zoneParameter>
+					<parameterName>ACOL3</parameterName>
+					<zoneHandler>F1-DE-SINGLE</zoneHandler>
+					<version>9</version>
+					<zone>CM_SAD</zone>
+					<customizationOwner>CM</customizationOwner>
+					<parameterValue><![CDATA[source=SQLCOL
+sqlcol=SA_TYPE_CD]]></parameterValue>
+				</zoneParameter>
+				<zoneParameter>
+					<parameterName>ACOL4</parameterName>
+					<zoneHandler>F1-DE-SINGLE</zoneHandler>
+					<version>9</version>
+					<zone>CM_SAD</zone>
+					<customizationOwner>CM</customizationOwner>
+					<parameterValue><![CDATA[source=SQLCOL
+sqlcol=RS_CD]]></parameterValue>
+				</zoneParameter>
+				<zoneParameter>
+					<parameterName>ACOL5</parameterName>
+					<zoneHandler>F1-DE-SINGLE</zoneHandler>
+					<version>9</version>
+					<zone>CM_SAD</zone>
+					<customizationOwner>CM</customizationOwner>
+					<parameterValue><![CDATA[source=SQLCOL
+sqlcol=SVC_TYPE_CD]]></parameterValue>
+				</zoneParameter>
+				<zoneParameter>
+					<parameterName>ACOL6</parameterName>
+					<zoneHandler>F1-DE-SINGLE</zoneHandler>
+					<version>9</version>
+					<zone>CM_SAD</zone>
+					<customizationOwner>CM</customizationOwner>
+				</zoneParameter>
+				<zoneParameter>
+					<parameterName>ACOL7</parameterName>
+					<zoneHandler>F1-DE-SINGLE</zoneHandler>
+					<version>9</version>
+					<zone>CM_SAD</zone>
+					<customizationOwner>CM</customizationOwner>
+				</zoneParameter>
+				<zoneParameter>
+					<parameterName>ACOL8</parameterName>
+					<zoneHandler>F1-DE-SINGLE</zoneHandler>
+					<version>9</version>
+					<zone>CM_SAD</zone>
+					<customizationOwner>CM</customizationOwner>
+				</zoneParameter>
+				<zoneParameter>
+					<parameterName>ACOL9</parameterName>
+					<zoneHandler>F1-DE-SINGLE</zoneHandler>
+					<version>9</version>
+					<zone>CM_SAD</zone>
+					<customizationOwner>CM</customizationOwner>
+				</zoneParameter>
+				<zoneParameter>
+					<parameterName>ALLOWCOLSORT</parameterName>
+					<zoneHandler>F1-DE-SINGLE</zoneHandler>
+					<version>6</version>
+					<zone>CM_SAD</zone>
+					<customizationOwner>CM</customizationOwner>
+				</zoneParameter>
+				<zoneParameter>
+					<parameterName>ALLOW_ROW_SS_1</parameterName>
+					<zoneHandler>F1-DE-SINGLE</zoneHandler>
+					<version>9</version>
+					<zone>CM_SAD</zone>
+					<customizationOwner>CM</customizationOwner>
+				</zoneParameter>
+				<zoneParameter>
+					<parameterName>ASQL</parameterName>
+					<zoneHandler>F1-DE-SINGLE</zoneHandler>
+					<version>9</version>
+					<zone>CM_SAD</zone>
+					<customizationOwner>CM</customizationOwner>
+					<parameterValue><![CDATA[SELECT
+SA.SA_ID,
+SA.SA_STATUS_FLG,
+SA.SA_TYPE_CD,
+HIST.RS_CD,
+RS.SVC_TYPE_CD
+FROM
+CI_ACCT_PER ACP,
+CI_SA SA,
+CI_SA_RS_HIST HIST,
+CI_RS RS
+WHERE
+ACP.PER_ID =:F1
+AND SA.SA_ID =:F2
+AND ACP.ACCT_ID = SA.ACCT_ID
+AND SA.SA_ID = HIST.SA_ID
+AND HIST.RS_CD = RS.RS_CD]]></parameterValue>
+				</zoneParameter>
+				<zoneParameter>
+					<parameterName>ASQLBDC</parameterName>
+					<zoneHandler>F1-DE-SINGLE</zoneHandler>
+					<version>9</version>
+					<zone>CM_SAD</zone>
+					<customizationOwner>CM</customizationOwner>
+				</zoneParameter>
+				<zoneParameter>
+					<parameterName>ASQLCOND</parameterName>
+					<zoneHandler>F1-DE-SINGLE</zoneHandler>
+					<version>9</version>
+					<zone>CM_SAD</zone>
+					<customizationOwner>CM</customizationOwner>
+				</zoneParameter>
+				<zoneParameter>
+					<parameterName>ASQLROWNUM</parameterName>
+					<zoneHandler>F1-DE-SINGLE</zoneHandler>
+					<version>9</version>
+					<zone>CM_SAD</zone>
+					<customizationOwner>CM</customizationOwner>
+				</zoneParameter>
+				<zoneParameter>
+					<parameterName>ASQLSRI</parameterName>
+					<zoneHandler>F1-DE-SINGLE</zoneHandler>
+					<version>9</version>
+					<zone>CM_SAD</zone>
+					<customizationOwner>CM</customizationOwner>
+				</zoneParameter>
+				<zoneParameter>
+					<parameterName>AUDITSS</parameterName>
+					<zoneHandler>F1-DE-SINGLE</zoneHandler>
+					<version>6</version>
+					<zone>CM_SAD</zone>
+					<customizationOwner>CM</customizationOwner>
+				</zoneParameter>
+				<zoneParameter>
+					<parameterName>CONFIGAREADISPLAY</parameterName>
+					<zoneHandler>F1-DE-SINGLE</zoneHandler>
+					<version>7</version>
+					<zone>CM_SAD</zone>
+					<customizationOwner>CM</customizationOwner>
+				</zoneParameter>
+				<zoneParameter>
+					<parameterName>DESCRAREADISPLAY</parameterName>
+					<zoneHandler>F1-DE-SINGLE</zoneHandler>
+					<version>7</version>
+					<zone>CM_SAD</zone>
+					<customizationOwner>CM</customizationOwner>
+				</zoneParameter>
+				<zoneParameter>
+					<parameterName>F1</parameterName>
+					<zoneHandler>F1-DE-SINGLE</zoneHandler>
+					<version>7</version>
+					<zone>CM_SAD</zone>
+					<customizationOwner>CM</customizationOwner>
+					<parameterValue>type=STRING</parameterValue>
+				</zoneParameter>
+				<zoneParameter>
+					<parameterName>F10</parameterName>
+					<zoneHandler>F1-DE-SINGLE</zoneHandler>
+					<version>6</version>
+					<zone>CM_SAD</zone>
+					<customizationOwner>CM</customizationOwner>
+				</zoneParameter>
+				<zoneParameter>
+					<parameterName>F11</parameterName>
+					<zoneHandler>F1-DE-SINGLE</zoneHandler>
+					<version>6</version>
+					<zone>CM_SAD</zone>
+					<customizationOwner>CM</customizationOwner>
+				</zoneParameter>
+				<zoneParameter>
+					<parameterName>F12</parameterName>
+					<zoneHandler>F1-DE-SINGLE</zoneHandler>
+					<version>6</version>
+					<zone>CM_SAD</zone>
+					<customizationOwner>CM</customizationOwner>
+				</zoneParameter>
+				<zoneParameter>
+					<parameterName>F13</parameterName>
+					<zoneHandler>F1-DE-SINGLE</zoneHandler>
+					<version>6</version>
+					<zone>CM_SAD</zone>
+					<customizationOwner>CM</customizationOwner>
+				</zoneParameter>
+				<zoneParameter>
+					<parameterName>F14</parameterName>
+					<zoneHandler>F1-DE-SINGLE</zoneHandler>
+					<version>6</version>
+					<zone>CM_SAD</zone>
+					<customizationOwner>CM</customizationOwner>
+				</zoneParameter>
+				<zoneParameter>
+					<parameterName>F15</parameterName>
+					<zoneHandler>F1-DE-SINGLE</zoneHandler>
+					<version>6</version>
+					<zone>CM_SAD</zone>
+					<customizationOwner>CM</customizationOwner>
+				</zoneParameter>
+				<zoneParameter>
+					<parameterName>F16</parameterName>
+					<zoneHandler>F1-DE-SINGLE</zoneHandler>
+					<version>6</version>
+					<zone>CM_SAD</zone>
+					<customizationOwner>CM</customizationOwner>
+				</zoneParameter>
+				<zoneParameter>
+					<parameterName>F17</parameterName>
+					<zoneHandler>F1-DE-SINGLE</zoneHandler>
+					<version>6</version>
+					<zone>CM_SAD</zone>
+					<customizationOwner>CM</customizationOwner>
+				</zoneParameter>
+				<zoneParameter>
+					<parameterName>F18</parameterName>
+					<zoneHandler>F1-DE-SINGLE</zoneHandler>
+					<version>6</version>
+					<zone>CM_SAD</zone>
+					<customizationOwner>CM</customizationOwner>
+				</zoneParameter>
+				<zoneParameter>
+					<parameterName>F19</parameterName>
+					<zoneHandler>F1-DE-SINGLE</zoneHandler>
+					<version>6</version>
+					<zone>CM_SAD</zone>
+					<customizationOwner>CM</customizationOwner>
+				</zoneParameter>
+				<zoneParameter>
+					<parameterName>F2</parameterName>
+					<zoneHandler>F1-DE-SINGLE</zoneHandler>
+					<version>6</version>
+					<zone>CM_SAD</zone>
+					<customizationOwner>CM</customizationOwner>
+				</zoneParameter>
+				<zoneParameter>
+					<parameterName>F20</parameterName>
+					<zoneHandler>F1-DE-SINGLE</zoneHandler>
+					<version>6</version>
+					<zone>CM_SAD</zone>
+					<customizationOwner>CM</customizationOwner>
+				</zoneParameter>
+				<zoneParameter>
+					<parameterName>F21</parameterName>
+					<zoneHandler>F1-DE-SINGLE</zoneHandler>
+					<version>6</version>
+					<zone>CM_SAD</zone>
+					<customizationOwner>CM</customizationOwner>
+				</zoneParameter>
+				<zoneParameter>
+					<parameterName>F22</parameterName>
+					<zoneHandler>F1-DE-SINGLE</zoneHandler>
+					<version>6</version>
+					<zone>CM_SAD</zone>
+					<customizationOwner>CM</customizationOwner>
+				</zoneParameter>
+				<zoneParameter>
+					<parameterName>F23</parameterName>
+					<zoneHandler>F1-DE-SINGLE</zoneHandler>
+					<version>6</version>
+					<zone>CM_SAD</zone>
+					<customizationOwner>CM</customizationOwner>
+				</zoneParameter>
+				<zoneParameter>
+					<parameterName>F24</parameterName>
+					<zoneHandler>F1-DE-SINGLE</zoneHandler>
+					<version>6</version>
+					<zone>CM_SAD</zone>
+					<customizationOwner>CM</customizationOwner>
+				</zoneParameter>
+				<zoneParameter>
+					<parameterName>F25</parameterName>
+					<zoneHandler>F1-DE-SINGLE</zoneHandler>
+					<version>6</version>
+					<zone>CM_SAD</zone>
+					<customizationOwner>CM</customizationOwner>
+				</zoneParameter>
+				<zoneParameter>
+					<parameterName>F3</parameterName>
+					<zoneHandler>F1-DE-SINGLE</zoneHandler>
+					<version>6</version>
+					<zone>CM_SAD</zone>
+					<customizationOwner>CM</customizationOwner>
+				</zoneParameter>
+				<zoneParameter>
+					<parameterName>F4</parameterName>
+					<zoneHandler>F1-DE-SINGLE</zoneHandler>
+					<version>6</version>
+					<zone>CM_SAD</zone>
+					<customizationOwner>CM</customizationOwner>
+				</zoneParameter>
+				<zoneParameter>
+					<parameterName>F5</parameterName>
+					<zoneHandler>F1-DE-SINGLE</zoneHandler>
+					<version>6</version>
+					<zone>CM_SAD</zone>
+					<customizationOwner>CM</customizationOwner>
+				</zoneParameter>
+				<zoneParameter>
+					<parameterName>F6</parameterName>
+					<zoneHandler>F1-DE-SINGLE</zoneHandler>
+					<version>6</version>
+					<zone>CM_SAD</zone>
+					<customizationOwner>CM</customizationOwner>
+				</zoneParameter>
+				<zoneParameter>
+					<parameterName>F7</parameterName>
+					<zoneHandler>F1-DE-SINGLE</zoneHandler>
+					<version>6</version>
+					<zone>CM_SAD</zone>
+					<customizationOwner>CM</customizationOwner>
+				</zoneParameter>
+				<zoneParameter>
+					<parameterName>F8</parameterName>
+					<zoneHandler>F1-DE-SINGLE</zoneHandler>
+					<version>6</version>
+					<zone>CM_SAD</zone>
+					<customizationOwner>CM</customizationOwner>
+				</zoneParameter>
+				<zoneParameter>
+					<parameterName>F9</parameterName>
+					<zoneHandler>F1-DE-SINGLE</zoneHandler>
+					<version>6</version>
+					<zone>CM_SAD</zone>
+					<customizationOwner>CM</customizationOwner>
+				</zoneParameter>
+				<zoneParameter>
+					<parameterName>FILTERAREAPLACEMENT</parameterName>
+					<zoneHandler>F1-DE-SINGLE</zoneHandler>
+					<version>6</version>
+					<zone>CM_SAD</zone>
+					<customizationOwner>CM</customizationOwner>
+				</zoneParameter>
+				<zoneParameter>
+					<parameterName>FILTERTEST</parameterName>
+					<zoneHandler>F1-DE-SINGLE</zoneHandler>
+					<version>6</version>
+					<zone>CM_SAD</zone>
+					<customizationOwner>CM</customizationOwner>
+				</zoneParameter>
+				<zoneParameter>
+					<parameterName>FILTERUIMAP</parameterName>
+					<zoneHandler>F1-DE-SINGLE</zoneHandler>
+					<version>6</version>
+					<zone>CM_SAD</zone>
+					<customizationOwner>CM</customizationOwner>
+				</zoneParameter>
+				<zoneParameter>
+					<parameterName>H1</parameterName>
+					<zoneHandler>F1-DE-SINGLE</zoneHandler>
+					<version>8</version>
+					<zone>CM_SAD</zone>
+					<customizationOwner>CM</customizationOwner>
+				</zoneParameter>
+				<zoneParameter>
+					<parameterName>H10</parameterName>
+					<zoneHandler>F1-DE-SINGLE</zoneHandler>
+					<version>6</version>
+					<zone>CM_SAD</zone>
+					<customizationOwner>CM</customizationOwner>
+				</zoneParameter>
+				<zoneParameter>
+					<parameterName>H2</parameterName>
+					<zoneHandler>F1-DE-SINGLE</zoneHandler>
+					<version>6</version>
+					<zone>CM_SAD</zone>
+					<customizationOwner>CM</customizationOwner>
+				</zoneParameter>
+				<zoneParameter>
+					<parameterName>H3</parameterName>
+					<zoneHandler>F1-DE-SINGLE</zoneHandler>
+					<version>6</version>
+					<zone>CM_SAD</zone>
+					<customizationOwner>CM</customizationOwner>
+				</zoneParameter>
+				<zoneParameter>
+					<parameterName>H4</parameterName>
+					<zoneHandler>F1-DE-SINGLE</zoneHandler>
+					<version>6</version>
+					<zone>CM_SAD</zone>
+					<customizationOwner>CM</customizationOwner>
+				</zoneParameter>
+				<zoneParameter>
+					<parameterName>H5</parameterName>
+					<zoneHandler>F1-DE-SINGLE</zoneHandler>
+					<version>6</version>
+					<zone>CM_SAD</zone>
+					<customizationOwner>CM</customizationOwner>
+				</zoneParameter>
+				<zoneParameter>
+					<parameterName>H6</parameterName>
+					<zoneHandler>F1-DE-SINGLE</zoneHandler>
+					<version>6</version>
+					<zone>CM_SAD</zone>
+					<customizationOwner>CM</customizationOwner>
+				</zoneParameter>
+				<zoneParameter>
+					<parameterName>H7</parameterName>
+					<zoneHandler>F1-DE-SINGLE</zoneHandler>
+					<version>6</version>
+					<zone>CM_SAD</zone>
+					<customizationOwner>CM</customizationOwner>
+				</zoneParameter>
+				<zoneParameter>
+					<parameterName>H8</parameterName>
+					<zoneHandler>F1-DE-SINGLE</zoneHandler>
+					<version>6</version>
+					<zone>CM_SAD</zone>
+					<customizationOwner>CM</customizationOwner>
+				</zoneParameter>
+				<zoneParameter>
+					<parameterName>H9</parameterName>
+					<zoneHandler>F1-DE-SINGLE</zoneHandler>
+					<version>6</version>
+					<zone>CM_SAD</zone>
+					<customizationOwner>CM</customizationOwner>
+				</zoneParameter>
+				<zoneParameter>
+					<parameterName>HIDDENEMPTY</parameterName>
+					<zoneHandler>F1-DE-SINGLE</zoneHandler>
+					<version>6</version>
+					<zone>CM_SAD</zone>
+					<customizationOwner>CM</customizationOwner>
+				</zoneParameter>
+				<zoneParameter>
+					<parameterName>INITIALDISPLAY</parameterName>
+					<zoneHandler>F1-DE-SINGLE</zoneHandler>
+					<version>9</version>
+					<zone>CM_SAD</zone>
+					<customizationOwner>CM</customizationOwner>
+					<parameterValue>C1 C2 C3 C4 C5</parameterValue>
+				</zoneParameter>
+				<zoneParameter>
+					<parameterName>MULTI_SELECT</parameterName>
+					<zoneHandler>F1-DE-SINGLE</zoneHandler>
+					<version>6</version>
+					<zone>CM_SAD</zone>
+					<customizationOwner>CM</customizationOwner>
+				</zoneParameter>
+				<zoneParameter>
+					<parameterName>MULTI_SEL_ACTION_1</parameterName>
+					<zoneHandler>F1-DE-SINGLE</zoneHandler>
+					<version>6</version>
+					<zone>CM_SAD</zone>
+					<customizationOwner>CM</customizationOwner>
+				</zoneParameter>
+				<zoneParameter>
+					<parameterName>MULTI_SEL_ACTION_10</parameterName>
+					<zoneHandler>F1-DE-SINGLE</zoneHandler>
+					<version>6</version>
+					<zone>CM_SAD</zone>
+					<customizationOwner>CM</customizationOwner>
+				</zoneParameter>
+				<zoneParameter>
+					<parameterName>MULTI_SEL_ACTION_11</parameterName>
+					<zoneHandler>F1-DE-SINGLE</zoneHandler>
+					<version>6</version>
+					<zone>CM_SAD</zone>
+					<customizationOwner>CM</customizationOwner>
+				</zoneParameter>
+				<zoneParameter>
+					<parameterName>MULTI_SEL_ACTION_12</parameterName>
+					<zoneHandler>F1-DE-SINGLE</zoneHandler>
+					<version>6</version>
+					<zone>CM_SAD</zone>
+					<customizationOwner>CM</customizationOwner>
+				</zoneParameter>
+				<zoneParameter>
+					<parameterName>MULTI_SEL_ACTION_13</parameterName>
+					<zoneHandler>F1-DE-SINGLE</zoneHandler>
+					<version>6</version>
+					<zone>CM_SAD</zone>
+					<customizationOwner>CM</customizationOwner>
+				</zoneParameter>
+				<zoneParameter>
+					<parameterName>MULTI_SEL_ACTION_14</parameterName>
+					<zoneHandler>F1-DE-SINGLE</zoneHandler>
+					<version>6</version>
+					<zone>CM_SAD</zone>
+					<customizationOwner>CM</customizationOwner>
+				</zoneParameter>
+				<zoneParameter>
+					<parameterName>MULTI_SEL_ACTION_15</parameterName>
+					<zoneHandler>F1-DE-SINGLE</zoneHandler>
+					<version>6</version>
+					<zone>CM_SAD</zone>
+					<customizationOwner>CM</customizationOwner>
+				</zoneParameter>
+				<zoneParameter>
+					<parameterName>MULTI_SEL_ACTION_2</parameterName>
+					<zoneHandler>F1-DE-SINGLE</zoneHandler>
+					<version>6</version>
+					<zone>CM_SAD</zone>
+					<customizationOwner>CM</customizationOwner>
+				</zoneParameter>
+				<zoneParameter>
+					<parameterName>MULTI_SEL_ACTION_3</parameterName>
+					<zoneHandler>F1-DE-SINGLE</zoneHandler>
+					<version>6</version>
+					<zone>CM_SAD</zone>
+					<customizationOwner>CM</customizationOwner>
+				</zoneParameter>
+				<zoneParameter>
+					<parameterName>MULTI_SEL_ACTION_4</parameterName>
+					<zoneHandler>F1-DE-SINGLE</zoneHandler>
+					<version>6</version>
+					<zone>CM_SAD</zone>
+					<customizationOwner>CM</customizationOwner>
+				</zoneParameter>
+				<zoneParameter>
+					<parameterName>MULTI_SEL_ACTION_5</parameterName>
+					<zoneHandler>F1-DE-SINGLE</zoneHandler>
+					<version>6</version>
+					<zone>CM_SAD</zone>
+					<customizationOwner>CM</customizationOwner>
+				</zoneParameter>
+				<zoneParameter>
+					<parameterName>MULTI_SEL_ACTION_6</parameterName>
+					<zoneHandler>F1-DE-SINGLE</zoneHandler>
+					<version>6</version>
+					<zone>CM_SAD</zone>
+					<customizationOwner>CM</customizationOwner>
+				</zoneParameter>
+				<zoneParameter>
+					<parameterName>MULTI_SEL_ACTION_7</parameterName>
+					<zoneHandler>F1-DE-SINGLE</zoneHandler>
+					<version>6</version>
+					<zone>CM_SAD</zone>
+					<customizationOwner>CM</customizationOwner>
+				</zoneParameter>
+				<zoneParameter>
+					<parameterName>MULTI_SEL_ACTION_8</parameterName>
+					<zoneHandler>F1-DE-SINGLE</zoneHandler>
+					<version>6</version>
+					<zone>CM_SAD</zone>
+					<customizationOwner>CM</customizationOwner>
+				</zoneParameter>
+				<zoneParameter>
+					<parameterName>MULTI_SEL_ACTION_9</parameterName>
+					<zoneHandler>F1-DE-SINGLE</zoneHandler>
+					<version>6</version>
+					<zone>CM_SAD</zone>
+					<customizationOwner>CM</customizationOwner>
+				</zoneParameter>
+				<zoneParameter>
+					<parameterName>NBROFROWS</parameterName>
+					<zoneHandler>F1-DE-SINGLE</zoneHandler>
+					<version>7</version>
+					<zone>CM_SAD</zone>
+					<customizationOwner>CM</customizationOwner>
+				</zoneParameter>
+				<zoneParameter>
+					<parameterName>NOSQLEXECUTE</parameterName>
+					<zoneHandler>F1-DE-SINGLE</zoneHandler>
+					<version>6</version>
+					<zone>CM_SAD</zone>
+					<customizationOwner>CM</customizationOwner>
+					<parameterValue>nosql=IGNORE</parameterValue>
+				</zoneParameter>
+				<zoneParameter>
+					<parameterName>OVERRIDEHEADERMAP</parameterName>
+					<zoneHandler>F1-DE-SINGLE</zoneHandler>
+					<version>6</version>
+					<zone>CM_SAD</zone>
+					<customizationOwner>CM</customizationOwner>
+				</zoneParameter>
+				<zoneParameter>
+					<parameterName>OVRD_IMPL_ACTION_1</parameterName>
+					<zoneHandler>F1-DE-SINGLE</zoneHandler>
+					<version>6</version>
+					<zone>CM_SAD</zone>
+					<customizationOwner>CM</customizationOwner>
+				</zoneParameter>
+				<zoneParameter>
+					<parameterName>OVRD_IMPL_ACTION_2</parameterName>
+					<zoneHandler>F1-DE-SINGLE</zoneHandler>
+					<version>6</version>
+					<zone>CM_SAD</zone>
+					<customizationOwner>CM</customizationOwner>
+				</zoneParameter>
+				<zoneParameter>
+					<parameterName>OVRD_IMPL_ACTION_3</parameterName>
+					<zoneHandler>F1-DE-SINGLE</zoneHandler>
+					<version>6</version>
+					<zone>CM_SAD</zone>
+					<customizationOwner>CM</customizationOwner>
+				</zoneParameter>
+				<zoneParameter>
+					<parameterName>OVRD_IMPL_ACTION_4</parameterName>
+					<zoneHandler>F1-DE-SINGLE</zoneHandler>
+					<version>6</version>
+					<zone>CM_SAD</zone>
+					<customizationOwner>CM</customizationOwner>
+				</zoneParameter>
+				<zoneParameter>
+					<parameterName>OVRD_IMPL_ACTION_5</parameterName>
+					<zoneHandler>F1-DE-SINGLE</zoneHandler>
+					<version>6</version>
+					<zone>CM_SAD</zone>
+					<customizationOwner>CM</customizationOwner>
+				</zoneParameter>
+				<zoneParameter>
+					<parameterName>PAGING</parameterName>
+					<zoneHandler>F1-DE-SINGLE</zoneHandler>
+					<version>7</version>
+					<zone>CM_SAD</zone>
+					<customizationOwner>CM</customizationOwner>
+				</zoneParameter>
+				<zoneParameter>
+					<parameterName>PPCOL1</parameterName>
+					<zoneHandler>F1-DE-SINGLE</zoneHandler>
+					<version>6</version>
+					<zone>CM_SAD</zone>
+					<customizationOwner>CM</customizationOwner>
+				</zoneParameter>
+				<zoneParameter>
+					<parameterName>PPCOL10</parameterName>
+					<zoneHandler>F1-DE-SINGLE</zoneHandler>
+					<version>6</version>
+					<zone>CM_SAD</zone>
+					<customizationOwner>CM</customizationOwner>
+				</zoneParameter>
+				<zoneParameter>
+					<parameterName>PPCOL2</parameterName>
+					<zoneHandler>F1-DE-SINGLE</zoneHandler>
+					<version>6</version>
+					<zone>CM_SAD</zone>
+					<customizationOwner>CM</customizationOwner>
+				</zoneParameter>
+				<zoneParameter>
+					<parameterName>PPCOL3</parameterName>
+					<zoneHandler>F1-DE-SINGLE</zoneHandler>
+					<version>6</version>
+					<zone>CM_SAD</zone>
+					<customizationOwner>CM</customizationOwner>
+				</zoneParameter>
+				<zoneParameter>
+					<parameterName>PPCOL4</parameterName>
+					<zoneHandler>F1-DE-SINGLE</zoneHandler>
+					<version>6</version>
+					<zone>CM_SAD</zone>
+					<customizationOwner>CM</customizationOwner>
+				</zoneParameter>
+				<zoneParameter>
+					<parameterName>PPCOL5</parameterName>
+					<zoneHandler>F1-DE-SINGLE</zoneHandler>
+					<version>6</version>
+					<zone>CM_SAD</zone>
+					<customizationOwner>CM</customizationOwner>
+				</zoneParameter>
+				<zoneParameter>
+					<parameterName>PPCOL6</parameterName>
+					<zoneHandler>F1-DE-SINGLE</zoneHandler>
+					<version>6</version>
+					<zone>CM_SAD</zone>
+					<customizationOwner>CM</customizationOwner>
+				</zoneParameter>
+				<zoneParameter>
+					<parameterName>PPCOL7</parameterName>
+					<zoneHandler>F1-DE-SINGLE</zoneHandler>
+					<version>6</version>
+					<zone>CM_SAD</zone>
+					<customizationOwner>CM</customizationOwner>
+				</zoneParameter>
+				<zoneParameter>
+					<parameterName>PPCOL8</parameterName>
+					<zoneHandler>F1-DE-SINGLE</zoneHandler>
+					<version>6</version>
+					<zone>CM_SAD</zone>
+					<customizationOwner>CM</customizationOwner>
+				</zoneParameter>
+				<zoneParameter>
+					<parameterName>PPCOL9</parameterName>
+					<zoneHandler>F1-DE-SINGLE</zoneHandler>
+					<version>6</version>
+					<zone>CM_SAD</zone>
+					<customizationOwner>CM</customizationOwner>
+				</zoneParameter>
+				<zoneParameter>
+					<parameterName>PRE_PROCESS_SS</parameterName>
+					<zoneHandler>F1-DE-SINGLE</zoneHandler>
+					<version>6</version>
+					<zone>CM_SAD</zone>
+					<customizationOwner>CM</customizationOwner>
+				</zoneParameter>
+				<zoneParameter>
+					<parameterName>RECORDCOUNTDISPLAY</parameterName>
+					<zoneHandler>F1-DE-SINGLE</zoneHandler>
+					<version>6</version>
+					<zone>CM_SAD</zone>
+					<customizationOwner>CM</customizationOwner>
+				</zoneParameter>
+				<zoneParameter>
+					<parameterName>REPORTHEIGHT</parameterName>
+					<zoneHandler>F1-DE-SINGLE</zoneHandler>
+					<version>7</version>
+					<zone>CM_SAD</zone>
+					<customizationOwner>CM</customizationOwner>
+				</zoneParameter>
+				<zoneParameter>
+					<parameterName>ROWNUMCOLDISPLAY</parameterName>
+					<zoneHandler>F1-DE-SINGLE</zoneHandler>
+					<version>6</version>
+					<zone>CM_SAD</zone>
+					<customizationOwner>CM</customizationOwner>
+				</zoneParameter>
+				<zoneParameter>
+					<parameterName>ROWSTOEXPORT</parameterName>
+					<zoneHandler>F1-DE-SINGLE</zoneHandler>
+					<version>7</version>
+					<zone>CM_SAD</zone>
+					<customizationOwner>CM</customizationOwner>
+				</zoneParameter>
+				<zoneParameter>
+					<parameterName>VISIBILITYSCRIPT</parameterName>
+					<zoneHandler>F1-DE-SINGLE</zoneHandler>
+					<version>6</version>
+					<zone>CM_SAD</zone>
+					<customizationOwner>CM</customizationOwner>
+				</zoneParameter>
+				<zoneParameter>
+					<parameterName>VISUAL_OPTION_1</parameterName>
+					<zoneHandler>F1-DE-SINGLE</zoneHandler>
+					<version>6</version>
+					<zone>CM_SAD</zone>
+					<customizationOwner>CM</customizationOwner>
+				</zoneParameter>
+				<zoneParameter>
+					<parameterName>VISUAL_OPTION_2</parameterName>
+					<zoneHandler>F1-DE-SINGLE</zoneHandler>
+					<version>6</version>
+					<zone>CM_SAD</zone>
+					<customizationOwner>CM</customizationOwner>
+				</zoneParameter>
+				<zoneParameter>
+					<parameterName>VISUAL_OPTION_3</parameterName>
+					<zoneHandler>F1-DE-SINGLE</zoneHandler>
+					<version>6</version>
+					<zone>CM_SAD</zone>
+					<customizationOwner>CM</customizationOwner>
+				</zoneParameter>
+				<zoneParameter>
+					<parameterName>VISUAL_OPTION_4</parameterName>
+					<zoneHandler>F1-DE-SINGLE</zoneHandler>
+					<version>6</version>
+					<zone>CM_SAD</zone>
+					<customizationOwner>CM</customizationOwner>
+				</zoneParameter>
+				<zoneParameter>
+					<parameterName>VISUAL_OPTION_5</parameterName>
+					<zoneHandler>F1-DE-SINGLE</zoneHandler>
+					<version>6</version>
+					<zone>CM_SAD</zone>
+					<customizationOwner>CM</customizationOwner>
+				</zoneParameter>
+				<version>24</version>
+			</boData>
+		</entities>
+		<entities>
+			<sequence>2</sequence>
+			<processingSequence>20</processingSequence>
+			<mo>F1-BUS SVC</mo>
+			<pk1>CM_SAD</pk1>
+			<pk2/>
+			<pk3/>
+			<pk4/>
+			<pk5/>
+			<bo>F1-BusinessServicePhysicalBO</bo>
+			<boData>
+				<businessService>CM_SAD</businessService>
+				<schema>
+					<schemaDefinition><![CDATA[<schema>
+<zone private="true" default="CM_SAD" mapField="ZONE_CD" dataType="string"/>
+<perID required="true" mapField="F1_VALUE" dataType="string"/>
+<saID required="true" mapField="F2_VALUE" dataType="string"/>
+<rowCount dataType="number" mapField="ROW_CNT"/>
+<results type="list" mapList="DE">
+<SA_ID mapField="COL_VALUE">
+<row mapList="DE_VAL">
+<SEQNO is="1"/>
+</row>
+</SA_ID>
+<SA_STATUS_FLG mapField="COL_VALUE">
+<row mapList="DE_VAL">
+<SEQNO is="2"/>
+</row>
+</SA_STATUS_FLG>
+<SA_TYPE_CD mapField="COL_VALUE">
+<row mapList="DE_VAL">
+<SEQNO is="3"/>
+</row>
+</SA_TYPE_CD>
+<RS_CD mapField="COL_VALUE">
+<row mapList="DE_VAL">
+<SEQNO is="4"/>
+</row>
+</RS_CD>
+<SVC_TYPE_CD mapField="COL_VALUE">
+<row mapList="DE_VAL">
+<SEQNO is="5"/>
+</row>
+</SVC_TYPE_CD>
+</results>
+</schema>]]></schemaDefinition>
+					<schemaName>CM_SAD</schemaName>
+					<schemaType>F1BS</schemaType>
+					<customizationOwner>CM</customizationOwner>
+					<version>10</version>
+				</schema>
+				<applicationServiceId>F1-DFLTAPS</applicationServiceId>
+				<customizationOwner>CM</customizationOwner>
+				<description>SA Details</description>
+				<serviceName>FWLZDEXP</serviceName>
+				<version>16</version>
+			</boData>
+		</entities>
+		<entities>
+			<sequence>3</sequence>
+			<processingSequence>30</processingSequence>
+			<mo>F1-BUS OBJ</mo>
+			<pk1>CM-Aprem</pk1>
+			<pk2/>
+			<pk3/>
+			<pk4/>
+			<pk5/>
+			<bo>F1-BusinessObjectPhysicalBO</bo>
+			<boData>
+				<businessObject>CM-Aprem</businessObject>
+				<longDescription>---By SURAJ</longDescription>
+				<schema>
+					<schemaDefinition><![CDATA[<schema>
+<input type="group">
+<premiseType mapField="PREM_TYPE_CD" dataType="string"/>
+<division mapField="CIS_DIVISION" dataType="string"/>
+<landLord mapField="LL_ID" dataType="string"/>
+<isKey dataType="boolean" mapField="KEY_SW"/>
+<key mapField="KEY_ID" dataType="string"/>
+<isOKToEnter dataType="boolean" mapField="OK_TO_ENTER_SW"/>
+<meterReadInstruction mapField="MR_INSTR_CD" dataType="string"/>
+<meterReadInstructionDetails mapField="MR_INSTR_DETAILS" dataType="string"/>
+<meterReadWarning mapField="MR_WARN_CD" dataType="string"/>
+<trendArea mapField="TREND_AREA_CD" dataType="string"/>
+<address1 mapField="ADDRESS1" dataType="string"/>
+<address2 mapField="ADDRESS2" dataType="string"/>
+<address3 mapField="ADDRESS3" dataType="string"/>
+<address4 mapField="ADDRESS4" dataType="string"/>
+<isMailingAddress dataType="boolean" mapField="MAIL_ADDR_SW"/>
+<city mapField="CITY" dataType="string"/>
+<streetNumber1 mapField="NUM1" dataType="string"/>
+<streetNumber2 mapField="NUM2" dataType="string"/>
+<county mapField="COUNTY" dataType="string"/>
+<postal mapField="POSTAL" dataType="string"/>
+<houseType dataType="lookup" mapField="HOUSE_TYPE" lookup="HOUSE_TYPE"/>
+<taxVendorGeographicalCode mapField="GEO_CODE" dataType="string"/>
+<isInCityLimit dataType="boolean" mapField="IN_CITY_LIMIT"/>
+<state mapField="STATE" dataType="string"/>
+<country mapField="COUNTRY" dataType="string"/>
+<version dataType="number" mapField="VERSION"/>
+<premiseDataArea mapField="PREM_DATA_AREA" dataType="string"/>
+<timeZone mapField="TIME_ZONE_CD" dataType="string"/>
+<lifeSupportSensitiveLoad dataType="lookup" mapField="LS_SL_FLG" lookup="LS_SL_FLG"/>
+<lifeSupportSensitiveLoadDescription mapField="LS_SL_DESCR" dataType="string"/>
+<parentPremiseId mapField="PRNT_PREM_ID" dataType="string"/>
+<addressUppercase mapField="ADDRESS1_UPR" dataType="string"/>
+<cityUppercase mapField="CITY_UPR" dataType="string"/>
+<premiseCharacteristic type="list" mapChild="CI_PREM_CHAR">
+<premiseId mapField="PREM_ID" dataType="string"/>
+<characteristicType mapField="CHAR_TYPE_CD" dataType="string"/>
+<characteristicValue mapField="CHAR_VAL" dataType="string"/>
+<effectiveDate dataType="date" mapField="EFFDT"/>
+<version dataType="number" mapField="VERSION"/>
+<adhocCharacteristicValue mapField="ADHOC_CHAR_VAL" dataType="string"/>
+<characteristicValueForeignKey1 mapField="CHAR_VAL_FK1" dataType="string"/>
+<characteristicValueFK2 mapField="CHAR_VAL_FK2" dataType="string"/>
+<characteristicValueFK3 mapField="CHAR_VAL_FK3" dataType="string"/>
+<characteristicValueFk4 mapField="CHAR_VAL_FK4" dataType="string"/>
+<characteristicValueFK5 mapField="CHAR_VAL_FK5" dataType="string"/>
+<searchCharacteristicValue mapField="SRCH_CHAR_VAL" dataType="string"/>
+</premiseCharacteristic>
+</input>
+<output type="group">
+<premiseId mapField="PREM_ID" dataType="string"/>
+</output>
+</schema>]]></schemaDefinition>
+					<schemaName>CM-Aprem</schemaName>
+					<schemaType>F1BO</schemaType>
+					<customizationOwner>CM</customizationOwner>
+					<version>3</version>
+				</schema>
+				<instanceControl>F1AL</instanceControl>
+				<applicationServiceId>CILCPRMP</applicationServiceId>
+				<description>To Add, Premise</description>
+				<customizationOwner>CM</customizationOwner>
+				<maintenanceObject>PREMISE</maintenanceObject>
+				<version>7</version>
+				<lifecycleBusinessObject>CM-Aprem</lifecycleBusinessObject>
+			</boData>
+		</entities>
+		<entities>
+			<sequence>4</sequence>
+			<processingSequence>35</processingSequence>
+			<mo>ALGORITHM</mo>
+			<pk1>CM-CCSLA</pk1>
+			<pk2/>
+			<pk3/>
+			<pk4/>
+			<pk5/>
+			<bo>F1-AlgorithmPhysicalBO</bo>
+			<boData>
+				<algorithm>CM-CCSLA</algorithm>
+				<algorithmType>CM-CCSL</algorithmType>
+				<algorithmVersion>
+					<algorithm>CM-CCSLA</algorithm>
+					<version>4</version>
+					<effectiveDate>1950-01-01</effectiveDate>
+					<customizationOwner>CM</customizationOwner>
+					<algorithmParameter>
+						<effectiveDate>1950-01-01</effectiveDate>
+						<version>3</version>
+						<sequence>10</sequence>
+						<algorithm>CM-CCSLA</algorithm>
+						<value><![CDATA[SELECT
+CC_ID
+FROM
+ci_cc
+WHERE
+cc_id BETWEEN :f1.lowId AND :f1.highId
+AND TRIM(CC_CL_CD) = TRIM(:contactclass)
+AND TRIM(CC_TYPE_CD) = TRIM(:contactType)
+AND ilm_dt >= TRIM(to_date(:tenBusinessDate,'YYYY-MM-DD'))
+ORDER BY
+cc_id]]></value>
+						<customizationOwner>CM</customizationOwner>
+					</algorithmParameter>
+					<algorithmParameter>
+						<effectiveDate>1950-01-01</effectiveDate>
+						<version>1</version>
+						<sequence>20</sequence>
+						<algorithm>CM-CCSLA</algorithm>
+						<value>THDS</value>
+						<customizationOwner>CM</customizationOwner>
+					</algorithmParameter>
+				</algorithmVersion>
+				<customizationOwner>CM</customizationOwner>
+				<description>Customer Contact Select records check</description>
+				<version>31</version>
+			</boData>
+		</entities>
+		<entities>
+			<sequence>5</sequence>
+			<processingSequence>40</processingSequence>
+			<mo>ALG TYPE</mo>
+			<pk1>CM-CCSL</pk1>
+			<pk2/>
+			<pk3/>
+			<pk4/>
+			<pk5/>
+			<bo>F1-AlgorithmTypePhysicalBO</bo>
+			<boData>
+				<algorithmType>CM-CCSL</algorithmType>
+				<programType>PLSR</programType>
+				<algorithmEntity>F1BR</algorithmEntity>
+				<customizationOwner>CM</customizationOwner>
+				<description>Customer Contact Select records check</description>
+				<algorithmTypeParameter>
+					<version>4</version>
+					<isParameterRequired>true</isParameterRequired>
+					<parameterLabel>SQL</parameterLabel>
+					<algorithmType>CM-CCSL</algorithmType>
+					<customizationOwner>CM</customizationOwner>
+					<sequence>10</sequence>
+				</algorithmTypeParameter>
+				<algorithmTypeParameter>
+					<version>2</version>
+					<isParameterRequired>false</isParameterRequired>
+					<parameterLabel>Batch Strategy</parameterLabel>
+					<algorithmType>CM-CCSL</algorithmType>
+					<customizationOwner>CM</customizationOwner>
+					<sequence>20</sequence>
+				</algorithmTypeParameter>
+				<version>3</version>
+				<script>CM-CCrecords</script>
+			</boData>
+		</entities>
+		<entities>
+			<sequence>6</sequence>
+			<processingSequence>50</processingSequence>
+			<mo>SCRIPT</mo>
+			<pk1>CM-CCrecords</pk1>
+			<pk2/>
+			<pk3/>
+			<pk4/>
+			<pk5/>
+			<bo>F1-ScriptPhysicalBO</bo>
+			<boData>
+				<script>CM-CCrecords</script>
+				<longDescription>For Testing</longDescription>
+				<algorithmEntity>F1BR</algorithmEntity>
+				<scriptStep>
+					<canDisplay>false</canDisplay>
+					<scriptStepForFalse>0</scriptStepForFalse>
+					<nextScriptStep>0</nextScriptStep>
+					<script>CM-CCrecords</script>
+					<sortSequence>10</sortSequence>
+					<stepType>LABL</stepType>
+					<scriptStepForTrue>0</scriptStepForTrue>
+					<version>5</version>
+					<customizationOwner>CM</customizationOwner>
+					<stepSequence>2</stepSequence>
+					<doesTextContainVariables>false</doesTextContainVariables>
+					<text>Author : SURAJ MESHRAM 10-30-2022 9:27 PM</text>
+				</scriptStep>
+				<scriptStep>
+					<canDisplay>false</canDisplay>
+					<scriptStepForFalse>0</scriptStepForFalse>
+					<nextScriptStep>0</nextScriptStep>
+					<script>CM-CCrecords</script>
+					<sortSequence>20</sortSequence>
+					<stepType>EDDT</stepType>
+					<scriptStepForTrue>0</scriptStepForTrue>
+					<version>45</version>
+					<editDataArea><![CDATA[move "parm/soft[2]/value" to "parm/hard/batchStrategy";
+move 'CC_ID' to "parm/hard/keyField";
+move "$PROCESS-DATE" to "F1-DateMath/beginDate";
+move 'F1AB' to "F1-DateMath/option";
+move 'BANK' to "F1-DateMath/calendar";
+move '-10' to "F1-DateMath/days";
+invokeBS 'F1-DateMath' using "F1-DateMath";
+move "string(parm/soft[1]/value)" to $sql;
+
+if ("contains($sql, ':contactclass')")
+move 'CC_CL_CD' to "parm/hard/bindVariables/+Bind/fieldName";
+move 'contactclass' to "parm/hard/bindVariables/Bind[last()]/name";
+move "string(parm/hard/batchParms/BatchParm[name='contactclass']/value)" to "parm/hard/bindVariables/Bind[last()]/value";
+end-if;
+
+if ("contains($sql, ':contactType')")
+move 'CC_TYPE_CD' to "parm/hard/bindVariables/+Bind/fieldName";
+move 'contactType' to "parm/hard/bindVariables/Bind[last()]/name";
+move "string(parm/hard/batchParms/BatchParm[name='contactType']/value)" to "parm/hard/bindVariables/Bind[last()]/value";
+end-if;
+
+if ("contains($sql, ':tenBusinessDate')")
+move 'tenBusinessDate' to "parm/hard/bindVariables/+Bind/name";
+move "F1-DateMath/endDate" to "parm/hard/bindVariables/Bind[last()]/value";
+end-if;]]></editDataArea>
+					<customizationOwner>CM</customizationOwner>
+					<stepSequence>1</stepSequence>
+					<doesTextContainVariables>false</doesTextContainVariables>
+					<text>To pass data</text>
+				</scriptStep>
+				<scriptType>PISC</scriptType>
+				<customizationOwner>CM</customizationOwner>
+				<scriptEngineVersion>F130</scriptEngineVersion>
+				<scriptDataArea>
+					<script>CM-CCrecords</script>
+					<dataAreaName>F1-DateMath</dataAreaName>
+					<dataAreaType>SCHM</dataAreaType>
+					<schemaName>F1-DateMath</schemaName>
+					<schemaType>F1BS</schemaType>
+					<version>1</version>
+					<customizationOwner>CM</customizationOwner>
+				</scriptDataArea>
+				<scriptDataArea>
+					<script>CM-CCrecords</script>
+					<dataAreaName>parm</dataAreaName>
+					<dataAreaType>PLIN</dataAreaType>
+					<version>1</version>
+					<customizationOwner>CM</customizationOwner>
+				</scriptDataArea>
+				<version>52</version>
+				<eligibilityOption>SEAE</eligibilityOption>
+			</boData>
+		</entities>
+	</bundle>
+</root>

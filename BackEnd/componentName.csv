@@ -1,0 +1,30 @@
+component,value
+fileName,uploads\Cm-Test.xml
+templateDocument,TD_new_template.docx
+outputFileName,TechnicalDocument.docx
+zone,Zone
+script,Script
+algorithm,Algorithm
+algorithmType,Algorithm Type
+scriptName,Script Name
+seperator, : 
+sequenceNo,Seq No
+parameter,Parameter
+parameterValue,Parameter Value
+parameterType,Type
+required,Required
+componentType,Component Type
+componentName,Component Name
+columnWidth,690200
+characteristics,Characteristics
+messageCategory,Message Category
+messageNumber,Message Number
+messageDescription,Description
+message,Messages
+characteristicsType,Characterstics Type
+businessService,Business Service
+businessObject,Business Object
+schema,Schema
+dataArea,Data Area
+uiMap,UI Map
+contactType,Contact Type
